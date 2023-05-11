@@ -93,7 +93,7 @@ const FormComp = ({ changeFormData, submit }) => {
           name="phoneNo"
           label="Phone Number"
           rules={[
-            { required: true, message: "Please input your phone number!"},
+            { required: true, message: "Please input your phone number!" },
           ]}
         >
           <Input addonBefore={"+91"} style={{ width: "100%" }} maxLength={10} />
@@ -116,16 +116,18 @@ const FormComp = ({ changeFormData, submit }) => {
           <Input />
         </Form.Item>
 
-        <Form.Item
+        {/* <Form.Item
           wrapperCol={{
             offset: 8,
             span: 16,
           }}
-        >
-          <Button type="primary" htmlType="submit">
-            Submit
-          </Button>
-        </Form.Item>
+        > */}
+          <div style={{display:"flex", width:"100%", justifyContent:"flex-end", flexDirection:"column"}}>
+            <Button type="primary" htmlType="submit" style={{width:"100%"}}>
+              Submit
+            </Button>
+          </div>
+        {/* </Form.Item> */}
       </Form>
     </>
   );
