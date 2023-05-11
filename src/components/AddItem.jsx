@@ -29,6 +29,7 @@ const AddItem = () => {
   };
 
   const submit = () => {
+    console.log("clicked submited")
     axios
       .post("https://cgc-seller-server.vercel.app/api/products", {
         ...itemData,

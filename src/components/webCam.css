@@ -1,6 +1,6 @@
 .captureBtn {
-  padding: 10px 30px;
-  background: blue;
+  padding: 7px 30px;
+  background-color: #3fa9f9;
   color: whitesmoke;
   border-radius: 30px;
   border: none;
@@ -8,5 +8,6 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  font-size: 17px;
+  font-size: 15px;
+  cursor: pointer;
 }

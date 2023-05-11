@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Layout, Row, FloatButton, Col } from "antd";
 import { SettingOutlined } from "@ant-design/icons";
 import "./ContainerComp.css";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 // import DataBase from "./DataBase";
 // import CardComp from "./CardComp";
@@ -10,6 +11,20 @@ import { Link } from "react-router-dom";
 const { Content } = Layout;
 
 const ContinerComp = ({ mode, D2L, L2D, change }) => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    axios
+      .get("https://cgc-seller-server.vercel.app/api/products")
+      .then((response) => {
+        setData(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  // if(data.length) data.map
+
   return (
     <Content className="site-layout-background">
       <button className="filter-btn" onClick={change}>
@@ -23,7 +38,7 @@ const ContinerComp = ({ mode, D2L, L2D, change }) => {
           lg: 32,
         }}
       >
-        {[1, 1, 1, 1, 1].map(() => {
+        {data.map((e) => {
           return (
             <Col
               xs={{ span: 12 }}
@@ -31,18 +46,14 @@ const ContinerComp = ({ mode, D2L, L2D, change }) => {
               lg={{ span: 6 }}
               style={{ marginBottom: "20px" }}
             >
-              <Link to={"/item"}>
+              <Link to={`/${e._id}`}>
                 <div id="card">
-                  <img
-                    className="card-img"
-                    alt="example"
-                    src="../../math.jpg"
-                  />
+                  <img className="card-img" alt="example" src={e.img} />
 
                   <div className="card-con">
-                    <h3>MAthematics book 1</h3>
+                    <h3>{e.title}</h3>
                     <div className="card-con-btm">
-                      <p>price : 230</p>
+                      <p>price : {e.price}</p>
                       <p>Buy</p>
                     </div>
                   </div>

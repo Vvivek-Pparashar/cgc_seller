@@ -1,11 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "./NavBar";
 import { Layout } from "antd";
 import FooterComp from "./FooterComp";
 import "./ItemContainer.css";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { useParams } from "react-router";
+import { ArrowLeftOutlined, PhoneOutlined } from "@ant-design/icons";
 
 const ItemContainer = () => {
+  const { id } = useParams();
+  const [data, setData] = useState({});
+
+  useEffect(() => {
+    axios
+      .get(`https://cgc-seller-server.vercel.app/api/products/${id}`)
+      .then((res) => {
+        setData(res.data.product);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+
+  const ownerData = [
+    {
+      id: "Name",
+      value: data.name,
+    },
+    {
+      id: "Phone No",
+      value: `+91 ${data.phoneNo}`,
+    },
+    {
+      id: "Email",
+      value: data.email,
+    },
+  ];
+
   return (
     <>
       <Layout className="main">
@@ -14,65 +46,46 @@ const ItemContainer = () => {
         <Layout className="site-layout" id="main-comp">
           <div className="ic-m">
             <div className="ic-m-l">
-              <img
-                src="../../math.jpg"
-                alt="Book"
-              />
+              <img src={data.img} alt="Book" />
             </div>
             <div className="ic-m-r">
-              <h3 style={{ fontSize: "40px" }}>Mathematics Book</h3>
-              <div style={{ display: "flex", gap: "10px" }}>
-                <h4 style={{ fontSize: "20px" }}>Price : </h4>
-                <p style={{ fontSize: "20px" }}>$ 350</p>
+              <h3 className="ic-m-r-h3">{data.title}</h3>
+              <div className="ic-m-r-pc">
+                <h4 className="ic-m-r-h4">Price : </h4>
+                <p className="ic-m-r-s-p">₹ {data.price}</p>
               </div>
 
-              <div style={{ display: "flex", gap: "10px" }}>
-                <h4 style={{ fontSize: "20px" }}>Category : </h4>
-                <p style={{ fontSize: "20px" }}>Book</p>
+              <div className="ic-m-r-pc">
+                <h4 className="ic-m-r-h4">Category : </h4>
+                <p className="ic-m-r-s-p">{data.category}</p>
               </div>
 
-              <h4 style={{ fontSize: "20px" }}>Owner Details :</h4>
-              <ul
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap:"5px",
-                  paddingLeft: "30px",
-                }}
-              >
-                <li>
-                  <div style={{ display: "flex", gap: "10px" }}>
-                    <h5 style={{ fontSize: "15px" }}>Name : </h5>
-                    <p style={{ fontSize: "15px" }}>Vivek Parashar</p>
-                  </div>
-                </li>
-                <li>
-                  <div style={{ display: "flex", gap: "10px" }}>
-                    <h5 style={{ fontSize: "15px" }}>Phone No : </h5>
-                    <p style={{ fontSize: "15px" }}>+91 9350320310</p>
-                  </div>
-                </li>
-                <li>
-                  <div style={{ display: "flex", gap: "10px" }}>
-                    <h5 style={{ fontSize: "15px" }}>Email : </h5>
-                    <p style={{ fontSize: "15px" }}>
-                      Vivekparashartkd@gmail.com
-                    </p>
-                  </div>
-                </li>
+              <h4 className="ic-m-r-h4">Owner Details :</h4>
+              <ul className="ic-m-r-ul">
+                {ownerData.map((e) => {
+                  return (
+                    <li>
+                      <div style={{ display: "flex", gap: "10px" }}>
+                        <h5 className="ic-m-r-h5">{e.id} : </h5>
+                        <p style={{ fontSize: "15px" }}>{e.value}</p>
+                      </div>
+                    </li>
+                  );
+                })}
               </ul>
-              {/* <h1>Vivek</h1> */}
-              <button
-                style={{
-                  width: "100%",
-                  padding: "5px 10px",
-                  marginTop: "10px",
-                }}
-              >
-                <a href="tel:9350320310">Call Now</a>
-              </button>
+              <a href={`tel:${data.phoneNo}`}>
+                <button className="ic-m-r-btn">
+                  <PhoneOutlined style={{transform:"rotate(90deg)"}}/>
+                  Call Now
+                </button>
+              </a>
 
-              <Link to={"/"}><p>{"<"}--- Go to Products</p></Link>
+              <div className="ic-m-r-linkcont">
+                <Link to={"/"} className="ic-m-r-link">
+                  <ArrowLeftOutlined style={{ fontSize: "19px" }} />
+                  <p className="ic-m-r-s-p">Go to Products</p>
+                </Link>
+              </div>
             </div>
           </div>
         </Layout>

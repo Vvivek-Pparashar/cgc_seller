@@ -116,18 +116,21 @@ const FormComp = ({ changeFormData, submit }) => {
           <Input />
         </Form.Item>
 
-        {/* <Form.Item
-          wrapperCol={{
-            offset: 8,
-            span: 16,
+        <div
+          style={{
+            display: "flex",
+            width: "100%",
+            justifyContent: "flex-end",
+            flexDirection: "column",
+            paddingLeft:"150px"
+            // alignItems:"flex-end"
+            // alignItems:"ce"
           }}
-        > */}
-          <div style={{display:"flex", width:"100%", justifyContent:"flex-end", flexDirection:"column"}}>
-            <Button type="primary" htmlType="submit" style={{width:"100%"}}>
-              Submit
-            </Button>
-          </div>
-        {/* </Form.Item> */}
+        >
+          <button className="captureBtn" type="primary" htmlType="submit">
+            Submit
+          </button>
+        </div>
       </Form>
     </>
   );
