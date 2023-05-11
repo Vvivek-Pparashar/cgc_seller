@@ -5,8 +5,10 @@ import "./webCam.css";
 
 const WebCam = ({ changeImg }) => {
   const [picture, setPicture] = useState("");
-
+  
   const videoConstraints = {
+    width: 400,
+    height: 400,
     facingMode: "environment",
   };
 
