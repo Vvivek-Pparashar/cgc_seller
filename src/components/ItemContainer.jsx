@@ -73,11 +73,14 @@ const ItemContainer = () => {
                   );
                 })}
               </ul>
-              <a href={`tel:${data.phoneNo}`}>
-                <button className="ic-m-r-btn">
-                  <PhoneOutlined style={{transform:"rotate(90deg)"}}/>
-                  Call Now
-                </button>
+
+              <a
+                href={`tel:${data.phoneNo}`}
+                style={{ marginTop: "10px" }}
+                className="ic-m-r-btn"
+              >
+                <PhoneOutlined style={{ transform: "rotate(90deg)" }} />
+                Call Now
               </a>
 
               <div className="ic-m-r-linkcont">
