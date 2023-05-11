@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import Webcam from "react-webcam";
 import { CameraOutlined, RetweetOutlined } from "@ant-design/icons";
+import "./webCam.css";
 
 const WebCam = ({ changeImg }) => {
   const [picture, setPicture] = useState("");
-  //   const [face, setFace] = useState("environment");
 
   const videoConstraints = {
-    width: 400,
-    height: 400,
     facingMode: "environment",
   };
 
@@ -19,9 +17,9 @@ const WebCam = ({ changeImg }) => {
     changeImg(pictureSrc);
   }, [changeImg]);
 
-  const reTake = ()=>{
+  const reTake = () => {
     setPicture("");
-  }
+  };
   return (
     <>
       {picture === "" ? (
@@ -35,8 +33,11 @@ const WebCam = ({ changeImg }) => {
           mirrored={false}
         />
       ) : (
-        // <div style={{background:"blue", width:"300px", height:"300px"}}></div>
-        <img src={picture} alt="book" style={{width:"300px", height:"300px"}}/>
+        <img
+          src={picture}
+          alt="book"
+          style={{ width: "300px", height: "300px" }}
+        />
       )}
 
       {picture === "" ? (
@@ -45,20 +46,9 @@ const WebCam = ({ changeImg }) => {
             e.preventDefault();
             capture();
           }}
-          style={{
-            padding: "10px 30px",
-            background: "blue",
-            color: "whitesmoke",
-            borderRadius: "30px",
-            border: "none",
-            display:"flex",
-            alignItems:"center",
-            justifyContent:"center",
-            gap:10,
-            fontSize:17
-          }}
+          className="captureBtn"
         >
-          <CameraOutlined className="capture" style={{fontSize:"20px"}}/>
+          <CameraOutlined className="capture" style={{ fontSize: "20px" }} />
           Capture
         </button>
       ) : (
@@ -67,20 +57,9 @@ const WebCam = ({ changeImg }) => {
             e.preventDefault();
             reTake();
           }}
-          style={{
-            padding: "10px 30px",
-            background: "blue",
-            color: "whitesmoke",
-            borderRadius: "30px",
-            border: "none",
-            display:"flex",
-            alignItems:"center",
-            justifyContent:"center",
-            gap:10,
-            fontSize:17
-          }}
+          className="captureBtn"
         >
-          <RetweetOutlined className="capture" style={{fontSize:"20px"}} />
+          <RetweetOutlined className="capture" style={{ fontSize: "20px" }} />
           Re-Take
         </button>
       )}

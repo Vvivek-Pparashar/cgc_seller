@@ -1,0 +1,12 @@
+.captureBtn {
+  padding: 10px 30px;
+  background: blue;
+  color: whitesmoke;
+  border-radius: 30px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10;
+  font-size: 17;
+}
