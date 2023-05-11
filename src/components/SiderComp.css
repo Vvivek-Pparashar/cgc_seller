@@ -6,7 +6,6 @@
   left: 0px;
   padding: 7px 0px;
   border-right: 1px solid #dbdbdb;
-  /* background-color: brown; */
   background-color: white;
 }
 
@@ -16,7 +15,7 @@
     top: 64px;
     left: -100%;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
 
     z-index: -2;
     transition: 0.5s linear all;
@@ -24,7 +23,7 @@
 
   .sider.active {
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     position: absolute;
     z-index: 1000;
     position: fixed;
@@ -35,7 +34,7 @@
 
   .sider-comp {
     left: -100%;
-    height: 100vh;
+    height: 100%;
     transition: 0.5s;
     top: 64px;
     position: fixed;
@@ -46,6 +45,6 @@
     position: fixed;
     left: 0;
     z-index: 100000;
-    height: 100vh;
+    height: 100%;
   }
 }

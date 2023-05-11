@@ -1,9 +1,8 @@
 import React from "react";
 import { Layout, Row, FloatButton, Col } from "antd";
 import { SettingOutlined } from "@ant-design/icons";
-import { Card } from "antd";
 import "./ContainerComp.css";
-const { Meta } = Card;
+import { Link } from "react-router-dom";
 
 // import DataBase from "./DataBase";
 // import CardComp from "./CardComp";
@@ -12,16 +11,10 @@ const { Content } = Layout;
 
 const ContinerComp = ({ mode, D2L, L2D, change }) => {
   return (
-    <Content
-      className="site-layout-background"
-      // style={{
-      //   margin: "20px 10px",
-      //   padding: "24px 20px",
-      //   background: "white",
-      //   height: "100%",
-      // }}
-    >
-      <button className="filter-btn" onClick={change}>Filters</button>
+    <Content className="site-layout-background">
+      <button className="filter-btn" onClick={change}>
+        Filters
+      </button>
       <Row
         gutter={{
           xs: 8,
@@ -38,22 +31,23 @@ const ContinerComp = ({ mode, D2L, L2D, change }) => {
               lg={{ span: 6 }}
               style={{ marginBottom: "20px" }}
             >
-              <div id="card">
-                <img
-                  className="card-img"
-                  alt="example"
-                  src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-                />
+              <Link to={"/item"}>
+                <div id="card">
+                  <img
+                    className="card-img"
+                    alt="example"
+                    src="../../math.jpg"
+                  />
 
-                <div className="card-con">
-                  <h3>MAthematics book 1</h3>
-                  <div className="card-con-btm">
-                  <p>price : 230</p>
-                  <p>Buy</p>
+                  <div className="card-con">
+                    <h3>MAthematics book 1</h3>
+                    <div className="card-con-btm">
+                      <p>price : 230</p>
+                      <p>Buy</p>
+                    </div>
                   </div>
-                  
                 </div>
-              </div>
+              </Link>
             </Col>
           );
         })}

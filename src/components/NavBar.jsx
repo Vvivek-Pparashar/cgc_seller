@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./NavBar.css";
+import { NavLink } from "react-router-dom";
 
 const NavBar = () => {
   const [open, setOpen] = useState(false);
@@ -41,8 +42,11 @@ const NavBar = () => {
               <a href="/">Faq's</a>
             </li>
           </ul>
-          <button className="add-item-button">Add Your Item</button>
-          <button className="menu-item-button" onClick={()=>setOpen(!open)}>
+          <NavLink to={"/addItem"}>
+            <button className="add-item-button">Add Your Item</button>
+          </NavLink>
+
+          <button className="menu-item-button" onClick={() => setOpen(!open)}>
             X
           </button>
         </div>
