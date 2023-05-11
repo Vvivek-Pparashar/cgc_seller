@@ -21,7 +21,7 @@ const AddItem = () => {
 
   const changeImg = (payLoad) => {
     setItemData({ ...itemData, img: payLoad });
-    console.log("vivek")
+    console.log("vivek");
   };
 
   const changeFormData = (payLoad) => {
@@ -54,8 +54,8 @@ const AddItem = () => {
             </div>
           </div>
         </Layout>
-        <FooterComp />
       </Layout>
+      <FooterComp />
     </>
   );
 };

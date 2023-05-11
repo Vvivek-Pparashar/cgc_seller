@@ -5,6 +5,7 @@
   height: 100%;
   padding: 5% 10%;
   gap: 10%;
+  overflow-x: hidden;
 }
 
 .ic-m-l {
@@ -32,7 +33,7 @@
 @media only screen and (max-width: 750px) {
   .ic-m {
     flex-direction: column;
-    padding: 10% 5%;
+    /* padding: 10% 5%; */
     gap: 30px;
   }
   
