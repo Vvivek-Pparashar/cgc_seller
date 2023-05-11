@@ -33,7 +33,7 @@
 @media only screen and (max-width: 750px) {
   .ic-m {
     flex-direction: column;
-    /* padding: 10% 5%; */
+    padding: 10% 5%;
     gap: 30px;
   }
   
