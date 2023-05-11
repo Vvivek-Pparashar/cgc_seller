@@ -28,7 +28,7 @@ const WebCam = ({ changeImg }) => {
           screenshotFormat="image/jpeg"
           videoConstraints={videoConstraints}
           // facingMode = {face}
-          mirrored={true}
+          mirrored={false}
         />
         // <div style={{background:"blue", width:"300px", height:"300px"}}></div>
       ) : (
