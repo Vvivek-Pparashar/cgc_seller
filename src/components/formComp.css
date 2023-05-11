@@ -1,0 +1,17 @@
+.form-btn-cont {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  flex-direction: column;
+  padding-left: 150px;
+}
+
+@media only screen and (max-width: 750px) {
+  .form-btn-cont {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    flex-direction: column;
+    padding-left: 0px;
+  }
+}

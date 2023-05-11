@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, InputNumber, Form, Input, Select } from "antd";
+import "./formComp.css";
 
 // const { Option } = Select;
 
@@ -116,17 +117,7 @@ const FormComp = ({ changeFormData, submit }) => {
           <Input />
         </Form.Item>
 
-        <div
-          style={{
-            display: "flex",
-            width: "100%",
-            justifyContent: "flex-end",
-            flexDirection: "column",
-            paddingLeft:"150px"
-            // alignItems:"flex-end"
-            // alignItems:"ce"
-          }}
-        >
+        <div className="form-btn-cont">
           <button className="captureBtn" type="primary" htmlType="submit">
             Submit
           </button>
