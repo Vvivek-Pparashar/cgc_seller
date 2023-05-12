@@ -1,12 +1,13 @@
-import React, { useState } from "react";
-import NavBar from "./NavBar";
+import React, { useEffect, useState } from "react";
+import NavBar from "../navBar/NavBar";
 import { Layout } from "antd";
-import FooterComp from "./FooterComp";
-import WebCam from "./WebCam";
-import FormComp from "./FormComp";
+import FooterComp from "../footerComp/FooterComp";
+import WebCam from "./webcam/WebCam";
+import FormComp from "./form/FormComp";
 import axios from "axios";
 
 const AddItem = () => {
+  // const [login, setLogin] = useState(null);
   const [itemData, setItemData] = useState({
     title: "",
     price: "",
@@ -17,11 +18,8 @@ const AddItem = () => {
     img: "",
   });
 
-  console.log(itemData);
-
   const changeImg = (payLoad) => {
     setItemData({ ...itemData, img: payLoad });
-    console.log("vivek");
   };
 
   const changeFormData = (payLoad) => {
@@ -29,7 +27,6 @@ const AddItem = () => {
   };
 
   const submit = () => {
-    console.log("clicked submited")
     axios
       .post("https://cgc-seller-server.vercel.app/api/products", {
         ...itemData,
@@ -41,11 +38,16 @@ const AddItem = () => {
         console.log(err);
       });
   };
+
+  // useEffect(() => {
+  //   setLogin(localStorage.getItem("email"));
+  // }, []);
   return (
     <>
       <Layout className="main">
         <NavBar />
         <Layout className="site-layout" id="main-comp">
+          {localStorage.getItem("email") != null ? <>h1</> : <>h2</>}
           <div className="ic-m">
             <div className="ic-m-l">
               <WebCam changeImg={changeImg} />

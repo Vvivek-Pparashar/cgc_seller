@@ -1,10 +1,11 @@
 import { Layout } from "antd";
 import React, { useState } from "react";
 import "./App.css";
-import ContinerComp from "./components/ContainerComp";
-import NavBar from "./components/NavBar";
-import SiderComp from "./components/SiderComp";
-import FooterComp from "./components/FooterComp";
+import ContinerComp from "./components/containerComp/ContainerComp";
+import NavBar from "./components/navBar/NavBar";
+import SiderComp from "./components/siderComp/SiderComp";
+import FooterComp from "./components/footerComp/FooterComp";
+import { ScrollRestoration } from "react-router-dom";
 
 const App = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -40,11 +41,17 @@ const App = () => {
         <NavBar mode={!mode} collapsed={collapsed} changeColl={changeColl} />
 
         <Layout className="site-layout" id="main-comp">
-        <SiderComp mode={mode} collapsed={collapsed} sider={sider} change2={change2} />
-        <ContinerComp mode={mode} D2L={D2L} L2D={L2D} change={change}/>
+          <SiderComp
+            mode={mode}
+            collapsed={collapsed}
+            sider={sider}
+            change2={change2}
+          />
+          <ContinerComp mode={mode} D2L={D2L} L2D={L2D} change={change} />
         </Layout>
         <FooterComp />
       </Layout>
+      <ScrollRestoration />
     </>
   );
 };

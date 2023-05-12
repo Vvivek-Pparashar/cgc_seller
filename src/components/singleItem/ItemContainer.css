@@ -75,6 +75,10 @@
   justify-content: center;
 }
 
+.ic-m-r-btn:hover {
+  color: rgb(225, 225, 225);
+}
+
 .ic-m-r-linkcont {
   margin-top: 20px;
   display: flex;

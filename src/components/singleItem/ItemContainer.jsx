@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import NavBar from "./NavBar";
+import NavBar from "../navBar/NavBar";
 import { Layout } from "antd";
-import FooterComp from "./FooterComp";
+import FooterComp from "../footerComp/FooterComp";
 import "./ItemContainer.css";
 import { Link } from "react-router-dom";
 import axios from "axios";

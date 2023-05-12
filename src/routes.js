@@ -1,8 +1,9 @@
 import React from "react";
 import App from "./App";
-import ItemContainer from "./components/ItemContainer";
+import ItemContainer from "./components/singleItem/ItemContainer";
 import { createBrowserRouter } from "react-router-dom";
-import AddItem from "./components/AddItem";
+import AddItem from "./components/addItem/AddItem";
+import YourItem from "./components/yourItem/YourItem";
 
 const router = createBrowserRouter([
   {
@@ -12,13 +13,18 @@ const router = createBrowserRouter([
   },
 
   {
-    path: "/:id",
+    path: "/item/:id",
     element: <ItemContainer />,
   },
 
   {
     path: "/addItem",
     element: <AddItem />,
+  },
+
+  {
+    path: "/yourItem",
+    element: <YourItem />,
   },
 ]);
 
