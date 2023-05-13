@@ -20,13 +20,13 @@ const YourItem = () => {
       .get("https://cgc-seller-server.vercel.app/api/products")
       .then((res) => {
         setData(
-          data.filter((item) => item.email === localStorage.getItem("email"))
+          res.data
         );
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [login]);
+  }, []);
 
   const handleLogin = () => {
     dispatch(setLogin(true))
@@ -57,7 +57,7 @@ const YourItem = () => {
                 }}
               >
                 {data.length ? (
-                  data.map((e) => {
+                  data.filter((item) => item.email === localStorage.getItem("email")).map((e) => {
                     return (
                       <Col
                         xs={{ span: 12 }}
