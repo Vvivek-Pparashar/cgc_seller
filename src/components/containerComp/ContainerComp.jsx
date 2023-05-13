@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { useDispatch, useSelector } from "react-redux";
+// import { setLogin } from "../store/slice/loginSlice";
 
 // import DataBase from "./DataBase";
 // import CardComp from "./CardComp";
@@ -15,6 +17,7 @@ const { Content } = Layout;
 const ContinerComp = ({ mode, D2L, L2D, change }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  // const dispatch = useDispatch();
   useEffect(() => {
     axios
       .get("https://cgc-seller-server.vercel.app/api/products")
@@ -27,13 +30,16 @@ const ContinerComp = ({ mode, D2L, L2D, change }) => {
       });
   }, []);
 
-  // if(data.length) data.map
+  const login = useSelector(state=>state.login.value)
+
+  console.log(login)
 
   return (
     <Content className="site-layout-background">
       <button className="filter-btn" onClick={change}>
         Filters
       </button>
+      {/* <button >{login ? "True" : "false"}</button> */}
       <Row
         gutter={{
           xs: 8,
@@ -57,7 +63,7 @@ const ContinerComp = ({ mode, D2L, L2D, change }) => {
                       display: "flex",
                       flexDirection: "column",
                       gap: "5px",
-                      background:"white"
+                      background: "white",
                     }}
                   >
                     <Skeleton className="card-img" />

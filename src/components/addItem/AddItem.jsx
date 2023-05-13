@@ -1,13 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import NavBar from "../navBar/NavBar";
 import { Layout } from "antd";
 import FooterComp from "../footerComp/FooterComp";
 import WebCam from "./webcam/WebCam";
 import FormComp from "./form/FormComp";
 import axios from "axios";
+import { useSelector } from "react-redux";
+import GoogleButton from "react-google-button";
+import { handleAuth } from "../utils/auth";
+import { setLogin } from "../store/slice/loginSlice";
+import { useDispatch } from "react-redux";
 
 const AddItem = () => {
   // const [login, setLogin] = useState(null);
+  const dispatch = useDispatch();
   const [itemData, setItemData] = useState({
     title: "",
     price: "",
@@ -39,23 +45,40 @@ const AddItem = () => {
       });
   };
 
-  // useEffect(() => {
-  //   setLogin(localStorage.getItem("email"));
-  // }, []);
+  const handleLogin = () => {
+    dispatch(setLogin(true));
+  };
+
+  const login = useSelector((state) => state.login.value);
   return (
     <>
       <Layout className="main">
         <NavBar />
         <Layout className="site-layout" id="main-comp">
-          {localStorage.getItem("email") != null ? <>h1</> : <>h2</>}
-          <div className="ic-m">
-            <div className="ic-m-l">
-              <WebCam changeImg={changeImg} />
+          {login ? (
+            <div className="ic-m">
+              <div className="ic-m-l">
+                <WebCam changeImg={changeImg} />
+              </div>
+              <div className="ic-m-r">
+                <FormComp changeFormData={changeFormData} submit={submit} />
+              </div>
             </div>
-            <div className="ic-m-r">
-              <FormComp changeFormData={changeFormData} submit={submit} />
+          ) : (
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column",
+                gap: "20px",
+              }}
+            >
+              <h2 style={{ fontSize: "30px" }}> Sign In to add Item</h2>
+              <GoogleButton onClick={() => handleAuth(handleLogin)} />
             </div>
-          </div>
+          )}
         </Layout>
       </Layout>
       <FooterComp />

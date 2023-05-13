@@ -5,84 +5,112 @@ import { Col, Layout, Row } from "antd";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { Content } from "antd/es/layout/layout";
-import Sider from "antd/es/layout/Sider";
-import SiderComp from "../siderComp/SiderComp";
+import { useDispatch, useSelector } from "react-redux";
+import GoogleButton from "react-google-button";
+import { handleAuth } from "../utils/auth";
+import { setLogin } from "../store/slice/loginSlice";
 
 const YourItem = () => {
+  const login = useSelector((state) => state.login.value);
+  const dispatch = useDispatch();
+
   const [data, setData] = useState([]);
   useEffect(() => {
     axios
       .get("https://cgc-seller-server.vercel.app/api/products")
       .then((res) => {
         setData(
-          res.data.filter(
-            (item) => item.email === localStorage.getItem("email")
-          )
+          data.filter((item) => item.email === localStorage.getItem("email"))
         );
+        setData(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [login]);
+
+  const handleLogin = () => {
+    dispatch(setLogin(true))
+  };
+
   return (
     <>
       <Layout className="main">
         <NavBar />
         <Layout className="site-layout" id="main-comp">
-          {/* <SiderComp/> */}
-          <Content className="site-layout-background">
-            <h1
-              style={{
-                fontSize: "35px",
-                textAlign: "center",
-                color: "#3fa9f9",
-              }}
-            >
-              Your Item's
-            </h1>
-            <Row
-              gutter={{
-                xs: 8,
-                sm: 16,
-                md: 24,
-                lg: 32,
-              }}
-            >
-              {data.length ? (
-                data.map((e) => {
-                  return (
-                    <Col
-                      xs={{ span: 12 }}
-                      sm={{ span: 8 }}
-                      lg={{ span: 6 }}
-                      style={{ marginBottom: "20px" }}
-                    >
-                      <Link to={`/item/${e._id}`}>
-                        <div id="card">
-                          <img className="card-img" alt="example" src={e.img} />
+          {login ? (
+            <Content className="site-layout-background">
+              <h1
+                style={{
+                  fontSize: "35px",
+                  textAlign: "center",
+                  color: "#3fa9f9",
+                }}
+              >
+                Your Item's
+              </h1>
+              <Row
+                gutter={{
+                  xs: 8,
+                  sm: 16,
+                  md: 24,
+                  lg: 32,
+                }}
+              >
+                {data.length ? (
+                  data.map((e) => {
+                    return (
+                      <Col
+                        xs={{ span: 12 }}
+                        sm={{ span: 8 }}
+                        lg={{ span: 6 }}
+                        style={{ marginBottom: "20px" }}
+                      >
+                        <Link to={`/item/${e._id}`}>
+                          <div id="card">
+                            <img
+                              className="card-img"
+                              alt="example"
+                              src={e.img}
+                            />
 
-                          <div className="card-con">
-                            <h3>{e.title}</h3>
-                            <div className="card-con-btm">
-                              <p>price : {e.price}</p>
-                              <p>Buy</p>
+                            <div className="card-con">
+                              <h3>{e.title}</h3>
+                              <div className="card-con-btm">
+                                <p>price : {e.price}</p>
+                                <p>Buy</p>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </Link>
-                    </Col>
-                  );
-                })
-              ) : (
-                <div style={{display:"flex", flexDirection:"column"}}>
-                  <h3>You have selled all of your item's </h3>
-                  <Link to={'/addItem'}>
-                        <div>Add item</div>
-                  </Link>
-                </div>
-              )}
-            </Row>
-          </Content>
+                        </Link>
+                      </Col>
+                    );
+                  })
+                ) : (
+                  <div style={{ display: "flex", flexDirection: "column" }}>
+                    <h3>You have selled all of your item's </h3>
+                    <Link to={"/addItem"}>
+                      <div>Add item</div>
+                    </Link>
+                  </div>
+                )}
+              </Row>
+            </Content>
+          ) : (
+            <div
+              style={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column",
+                gap: "20px",
+              }}
+            >
+              <h2 style={{ fontSize: "30px" }}> Sign In to get your Item</h2>
+              <GoogleButton onClick={() => handleAuth(handleLogin)} />
+            </div>
+          )}
         </Layout>
         <FooterComp />
       </Layout>

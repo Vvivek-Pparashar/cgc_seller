@@ -3,30 +3,47 @@ import "./NavBar.css";
 import { Link } from "react-router-dom";
 import { handleAuth } from "../utils/auth";
 import AvatarComp from "./AvatarComp";
+import { useDispatch, useSelector } from "react-redux";
+import { setLogOut, setLogin } from "../store/slice/loginSlice";
 
 const NavBar = () => {
-  const [open, setOpen] = useState(false);
-  const [email, setEmail] = useState({ email: null, avatar: null });
+  const dispatch = useDispatch();
+  const login = useSelector((state) => state.login.value);
 
-  const handleEmail = (payload) => {
-    console.log(payload);
-    setEmail({ email: payload.email, avatar: payload.photoURL });
-  };
+  const [open, setOpen] = useState(false);
+  const [email, setEmail] = useState({
+    email: localStorage.getItem("email"),
+    avatar: localStorage.getItem("avatar"),
+  });
+
 
   const setEmailNull = () => {
     localStorage.clear();
     setEmail({ email: null, avatar: null });
+    dispatch(setLogOut(false));
   };
+
+  const handleLogin = ()=>{
+    dispatch(setLogin(true));
+  }
+
+  useEffect(() => {
+    if (localStorage.getItem("email")) {
+      dispatch(setLogin(true));
+    } else {
+      dispatch(setLogin(false));
+    }
+  }, []);
 
   useEffect(() => {
     setEmail({
       email: localStorage.getItem("email"),
       avatar: localStorage.getItem("avatar"),
     });
-  }, []);
+  }, [login]);
 
-  console.log("vivek auth");
-  console.log(email);
+  // console.log("vivek auth");
+  // console.log(email);
   return (
     <>
       <nav className="navbar">
@@ -70,7 +87,7 @@ const NavBar = () => {
           {/* <NavLink to={"/addItem"}> */}
 
           {email.email ? (
-            <AvatarComp avatar={email.avatar} setEmailNull={setEmailNull}/>
+            <AvatarComp avatar={email.avatar} setEmailNull={setEmailNull} />
           ) : (
             <button
               className="add-item-button"
@@ -80,10 +97,10 @@ const NavBar = () => {
                 background: "black",
                 border: "none",
                 borderRadius: "20px",
-                cursor:"pointer"
+                cursor: "pointer",
               }}
               onClick={() => {
-                handleAuth(handleEmail);
+                handleAuth(handleLogin);
               }}
             >
               Add Item
