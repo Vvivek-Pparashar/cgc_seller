@@ -20,7 +20,7 @@ const AddItem = () => {
     category: "",
     name: "",
     phoneNO: "",
-    email: "",
+    email: localStorage.getItem("email"),
     img: "",
   });
 
@@ -29,13 +29,14 @@ const AddItem = () => {
   };
 
   const changeFormData = (payLoad) => {
-    setItemData({ ...payLoad, img: itemData.img });
+    setItemData({ ...payLoad, img: itemData.img, email:itemData.email });
   };
 
   const submit = () => {
     axios
       .post("https://cgc-seller-server.vercel.app/api/products", {
         ...itemData,
+        email: itemData.email
       })
       .then((response) => {
         console.log(response);
@@ -61,7 +62,7 @@ const AddItem = () => {
                 <WebCam changeImg={changeImg} />
               </div>
               <div className="ic-m-r">
-                <FormComp changeFormData={changeFormData} submit={submit} />
+                <FormComp changeFormData={changeFormData} submit={submit} itemData={itemData}/>
               </div>
             </div>
           ) : (

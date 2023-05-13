@@ -22,7 +22,6 @@ const YourItem = () => {
         setData(
           data.filter((item) => item.email === localStorage.getItem("email"))
         );
-        setData(res.data);
       })
       .catch((err) => {
         console.log(err);

@@ -4,7 +4,7 @@ import "./formComp.css";
 
 // const { Option } = Select;
 
-const FormComp = ({ changeFormData, submit }) => {
+const FormComp = ({ changeFormData, submit, itemData }) => {
   const onFinish = (values) => {
     console.log("Success:", values);
     changeFormData(values);
@@ -103,18 +103,8 @@ const FormComp = ({ changeFormData, submit }) => {
         <Form.Item
           name="email"
           label="E-mail"
-          rules={[
-            {
-              type: "email",
-              message: "The input is not valid E-mail!",
-            },
-            {
-              required: true,
-              message: "Please input your E-mail!",
-            },
-          ]}
         >
-          <Input />
+          <Input placeholder={itemData.email} disabled/>
         </Form.Item>
 
         <div className="form-btn-cont">
