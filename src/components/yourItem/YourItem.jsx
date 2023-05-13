@@ -9,27 +9,29 @@ import { useDispatch, useSelector } from "react-redux";
 import GoogleButton from "react-google-button";
 import { handleAuth } from "../utils/auth";
 import { setLogin } from "../store/slice/loginSlice";
+import CardCompSkeleton from "../skeleton/CardCompSkeleton";
 
 const YourItem = () => {
   const login = useSelector((state) => state.login.value);
   const dispatch = useDispatch();
 
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     axios
       .get("https://cgc-seller-server.vercel.app/api/products")
       .then((res) => {
-        setData(
-          res.data
-        );
+        setData(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
+
+    setLoading(false);
   }, []);
 
   const handleLogin = () => {
-    dispatch(setLogin(true))
+    dispatch(setLogin(true));
   };
 
   return (
@@ -37,13 +39,27 @@ const YourItem = () => {
       <Layout className="main">
         <NavBar />
         <Layout className="site-layout" id="main-comp">
-          {login ? (
+          {loading ? (
+            <Content className="site-layout-background">
+              <Row
+                gutter={{
+                  xs: 8,
+                  sm: 16,
+                  md: 24,
+                  lg: 32,
+                }}
+              >
+                <CardCompSkeleton />
+              </Row>
+            </Content>
+          ) : login ? (
             <Content className="site-layout-background">
               <h1
                 style={{
                   fontSize: "35px",
                   textAlign: "center",
                   color: "#3fa9f9",
+                  marginBottom: "20px",
                 }}
               >
                 Your Item's
@@ -56,35 +72,41 @@ const YourItem = () => {
                   lg: 32,
                 }}
               >
-                {data.length ? (
-                  data.filter((item) => item.email === localStorage.getItem("email")).map((e) => {
-                    return (
-                      <Col
-                        xs={{ span: 12 }}
-                        sm={{ span: 8 }}
-                        lg={{ span: 6 }}
-                        style={{ marginBottom: "20px" }}
-                      >
-                        <Link to={`/item/${e._id}`}>
-                          <div id="card">
-                            <img
-                              className="card-img"
-                              alt="example"
-                              src={e.img}
-                            />
+                {data.filter(
+                  (item) => item.email === localStorage.getItem("email")
+                ).length ? (
+                  data
+                    .filter(
+                      (item) => item.email === localStorage.getItem("email")
+                    )
+                    .map((e) => {
+                      return (
+                        <Col
+                          xs={{ span: 12 }}
+                          sm={{ span: 8 }}
+                          lg={{ span: 6 }}
+                          style={{ marginBottom: "20px" }}
+                        >
+                          <Link to={`/item/${e._id}`}>
+                            <div id="card">
+                              <img
+                                className="card-img"
+                                alt="example"
+                                src={e.img}
+                              />
 
-                            <div className="card-con">
-                              <h3>{e.title}</h3>
-                              <div className="card-con-btm">
-                                <p>price : {e.price}</p>
-                                <p>Buy</p>
+                              <div className="card-con">
+                                <h3>{e.title}</h3>
+                                <div className="card-con-btm">
+                                  <p>price : {e.price}</p>
+                                  <p>Buy</p>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        </Link>
-                      </Col>
-                    );
-                  })
+                          </Link>
+                        </Col>
+                      );
+                    })
                 ) : (
                   <div style={{ display: "flex", flexDirection: "column" }}>
                     <h3>You have selled all of your item's </h3>

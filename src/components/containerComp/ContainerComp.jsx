@@ -4,10 +4,10 @@ import { SettingOutlined } from "@ant-design/icons";
 import "./ContainerComp.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useDispatch, useSelector } from "react-redux";
-// import { setLogin } from "../store/slice/loginSlice";
+import { changeFilter } from "../store/slice/filterSlice";
+import CardCompSkeleton from "../skeleton/CardCompSkeleton";
 
 // import DataBase from "./DataBase";
 // import CardComp from "./CardComp";
@@ -17,22 +17,33 @@ const { Content } = Layout;
 const ContinerComp = ({ mode, D2L, L2D, change }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const filter = useSelector((state) => state.filter.value);
+
+  useEffect(() => {
+    dispatch(changeFilter("All"));
+  }, []);
+
   useEffect(() => {
     axios
       .get("https://cgc-seller-server.vercel.app/api/products")
       .then((response) => {
-        setData(response.data);
+        if (filter === "All") {
+          setData(response.data);
+        } else {
+          setData(response.data.filter((item) => item.category === filter));
+        }
+
         setLoading(false);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [filter]);
 
-  const login = useSelector(state=>state.login.value)
+  const login = useSelector((state) => state.login.value);
 
-  console.log(login)
+  console.log(login);
 
   return (
     <Content className="site-layout-background">
@@ -48,55 +59,60 @@ const ContinerComp = ({ mode, D2L, L2D, change }) => {
           lg: 32,
         }}
       >
-        {loading
-          ? [1, 1, 1, 1, 1, 1, 1, 1].map(() => {
-              return (
-                <Col
-                  xs={{ span: 12 }}
-                  sm={{ span: 8 }}
-                  lg={{ span: 6 }}
-                  style={{ marginBottom: "20px" }}
-                >
-                  <div
-                    id="card"
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: "5px",
-                      background: "white",
-                    }}
-                  >
-                    <Skeleton className="card-img" />
-                    <Skeleton height={"40px"} width={"100%"} />
-                    <Skeleton height={"20px"} />
-                  </div>
-                </Col>
-              );
-            })
-          : data.reverse().map((e) => {
-              return (
-                <Col
-                  xs={{ span: 12 }}
-                  sm={{ span: 8 }}
-                  lg={{ span: 6 }}
-                  style={{ marginBottom: "20px" }}
-                >
-                  <Link to={`/item/${e._id}`}>
-                    <div id="card">
-                      <img className="card-img" alt="example" src={e.img} />
+        {loading ? (
+          <CardCompSkeleton />
+        ) : data.length ? (
+          data.reverse().map((e) => {
+            return (
+              <Col
+                xs={{ span: 12 }}
+                sm={{ span: 8 }}
+                lg={{ span: 6 }}
+                style={{ marginBottom: "20px" }}
+              >
+                <Link to={`/item/${e._id}`}>
+                  <div id="card">
+                    <img className="card-img" alt="example" src={e.img} />
 
-                      <div className="card-con">
-                        <h3>{e.title}</h3>
-                        <div className="card-con-btm">
-                          <p>price : {e.price}</p>
-                          <p>Buy</p>
-                        </div>
+                    <div className="card-con">
+                      <h3>{e.title}</h3>
+                      <div className="card-con-btm">
+                        <p>price : {e.price}</p>
+                        <p>Buy</p>
                       </div>
                     </div>
-                  </Link>
-                </Col>
-              );
-            })}
+                  </div>
+                </Link>
+              </Col>
+            );
+          })
+        ) : (
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              width: "100%",
+              flexDirection: "column",
+              gap: "20px",
+            }}
+          >
+            <h1 style={{ fontSize: "30px" }}>Nothing Found!!!</h1>
+            <Link to={"/addItem"}>
+              <button
+                style={{
+                  padding: "7px 20px",
+                  borderRadius: "20px",
+                  border: "none",
+                  background: "black",
+                  color: "white",
+                  cursor: "pointer",
+                }}
+              >
+                Add Item
+              </button>
+            </Link>
+          </div>
+        )}
       </Row>
 
       <FloatButton.Group icon={<SettingOutlined />} trigger="click">

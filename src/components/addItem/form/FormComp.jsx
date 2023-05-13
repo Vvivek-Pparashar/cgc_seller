@@ -31,7 +31,7 @@ const FormComp = ({ changeFormData, submit, itemData }) => {
         }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
-        autoComplete="off"
+        // autoComplete="
       >
         <Form.Item
           label="Title"
@@ -104,7 +104,7 @@ const FormComp = ({ changeFormData, submit, itemData }) => {
           name="email"
           label="E-mail"
         >
-          <Input placeholder={itemData.email} disabled/>
+          <Input placeholder={itemData.email} disabled value = {itemData.email}/>
         </Form.Item>
 
         <div className="form-btn-cont">

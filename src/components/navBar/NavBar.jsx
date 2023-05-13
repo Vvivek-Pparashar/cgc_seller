@@ -42,7 +42,7 @@ const NavBar = () => {
     });
   }, [login]);
 
-  // console.log("vivek auth");
+  console.log("vivek auth");
   // console.log(email);
   return (
     <>
