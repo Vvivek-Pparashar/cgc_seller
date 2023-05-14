@@ -5,6 +5,7 @@ import { handleAuth } from "../utils/auth";
 import AvatarComp from "./AvatarComp";
 import { useDispatch, useSelector } from "react-redux";
 import { setLogOut, setLogin } from "../store/slice/loginSlice";
+import { MenuOutlined, CloseOutlined } from "@ant-design/icons";
 
 const NavBar = () => {
   const dispatch = useDispatch();
@@ -16,16 +17,15 @@ const NavBar = () => {
     avatar: localStorage.getItem("avatar"),
   });
 
-
   const setEmailNull = () => {
     localStorage.clear();
     setEmail({ email: null, avatar: null });
     dispatch(setLogOut(false));
   };
 
-  const handleLogin = ()=>{
+  const handleLogin = () => {
     dispatch(setLogin(true));
-  }
+  };
 
   useEffect(() => {
     if (localStorage.getItem("email")) {
@@ -48,24 +48,47 @@ const NavBar = () => {
     <>
       <nav className="navbar">
         <div className="navbar-container container">
-          <Link to={"/"}>
-            <h1 className="logo">CGC Seller</h1>
+
+          {open ? (
+            <CloseOutlined
+              onClick={() => setOpen(false)}
+              style={{ fontSize: "20px" }}
+            />
+          ) : (
+            <MenuOutlined
+              onClick={() => setOpen(true)}
+              style={{ fontSize: "20px" }}
+            />
+          )}
+
+          <Link to={"/"} style={{display:"flex", justifyContent:"center"}}>
+            <img
+              src="../../../logo2.png"
+              alt="logo"
+              style={{ width: "200px" }}
+            />
           </Link>
 
           <div className={`menu-sm ${open ? "active" : ""}`}>
-            <h1 className="logo">CGC Seller</h1>
+            <Link to={"/"}>
+              <img
+                src="../../../logo2.png"
+                alt="logo"
+                style={{ width: "180px" }}
+              />
+            </Link>
             <ul className="menu-sm-items">
               <li>
                 <Link to={"/"}>Home</Link>
               </li>
               <li>
-                <a href="/">About</a>
+                <Link to={"/about"}>About</Link>
               </li>
               <li>
-                <a href="/">Contact Us</a>
+                <Link to={"/contact"}>Contact</Link>
               </li>
               <li>
-                <a href="/">Faq's</a>
+                <Link to={"/faq"}>Faq's</Link>
               </li>
             </ul>
           </div>
@@ -84,7 +107,6 @@ const NavBar = () => {
               <a href="/">Faq's</a>
             </li>
           </ul>
-          {/* <NavLink to={"/addItem"}> */}
 
           {email.email ? (
             <AvatarComp avatar={email.avatar} setEmailNull={setEmailNull} />
@@ -106,21 +128,6 @@ const NavBar = () => {
               Add Item
             </button>
           )}
-
-          {/* </NavLink> */}
-
-          {/* <button
-            onClick={() => {
-              localStorage.clear();
-              setEmail({ email: null, avatar: null });
-            }}
-          >
-            Logout
-          </button> */}
-
-          <button className="menu-item-button" onClick={() => setOpen(!open)}>
-            X
-          </button>
         </div>
       </nav>
     </>

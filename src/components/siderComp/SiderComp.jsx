@@ -6,15 +6,7 @@ const SiderComp = ({ sider, change2 }) => {
   return (
     <div className={`sider ${sider ? "active" : ""}`}>
       <div className={`sider-comp  ${sider ? "active" : ""}`}>
-        {/* <button
-          onClick={() => {
-            change2();
-          }}
-        >
-          X
-        </button> */}
-        {/* vivek */}
-        <div style={{display:"flex", flexDirection:"column", gap:"30px"}}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "30px" }}>
           <h2>Apply Filter</h2>
           <FilterComp />
         </div>
