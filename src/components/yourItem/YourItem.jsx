@@ -22,12 +22,11 @@ const YourItem = () => {
       .get("https://cgc-seller-server.vercel.app/api/products")
       .then((res) => {
         setData(res.data);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
       });
-
-    setLoading(false);
   }, []);
 
   const handleLogin = () => {
