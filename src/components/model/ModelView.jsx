@@ -6,7 +6,7 @@ import CancelSharpIcon from "@mui/icons-material/CancelSharp";
 import "./ModelView.css";
 import { Link } from "react-router-dom";
 
-const ModelView = ({ handleCloseModel, model }) => {
+const ModelView = ({ handleModel, model, data }) => {
   return (
     <>
       <div className="Model-View">
@@ -15,15 +15,15 @@ const ModelView = ({ handleCloseModel, model }) => {
             <CircularProgress />
             <div className="Mo-lo-c">
               <h2 className="mo-lo-c-head">Loading....</h2>
-              <p>Proccessing for delete</p>
+              <p>{data[0].p}</p>
             </div>
           </div>
         ) : model === 2 ? (
           <div className="Model-Success">
             <CheckCircleSharpIcon style={{ color: "green" }} />
             <h3>Success</h3>
-            <p>Your Item is successfully deleted</p>
-            <Link to={"/yourItem"}>
+            <p>{data[1].p}</p>
+            <Link to={data[1].link}>
               <button className="Model-Success-button">Done</button>
             </Link>
           </div>
@@ -32,9 +32,14 @@ const ModelView = ({ handleCloseModel, model }) => {
             <CancelSharpIcon style={{ color: "red" }} />
             <h1>Error</h1>
             <p>Please check your network</p>
-            <Link to={"/yourItem"}>
-              <button className="Model-Success-button">Close</button>
-            </Link>
+            <button
+              onClick={() => {
+                handleModel();
+              }}
+              className="Model-Success-button"
+            >
+              Close
+            </button>
           </div>
         ) : (
           <></>

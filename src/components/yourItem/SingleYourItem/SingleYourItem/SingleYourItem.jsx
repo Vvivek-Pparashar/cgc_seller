@@ -7,7 +7,7 @@ import axios from "axios";
 import { useParams } from "react-router";
 import { ArrowLeftOutlined, DeleteFilled } from "@ant-design/icons";
 import SingleItemSkeleton from "../../../skeleton/SingleItemSkeleton";
-import ModelView from "../../model/ModelView";
+import ModelView from "../../../model/ModelView";
 
 const SingleYourItem = () => {
   const { id } = useParams();
@@ -43,6 +43,10 @@ const SingleYourItem = () => {
     },
   ];
 
+  const handleModel = () => {
+    setDataLoader(false);
+  };
+
   return (
     <>
       <Layout className="main">
@@ -51,7 +55,14 @@ const SingleYourItem = () => {
         <Layout className="site-layout" id="main-comp">
           {dataLoader ? (
             <div>
-              <ModelView model={model} />
+              <ModelView
+                model={model}
+                data={[
+                  { p: "Processing Your Data" },
+                  { p: "Your Item is successfully Added", link: "/yourItem" },
+                ]}
+                handleModel={handleModel}
+              />
             </div>
           ) : (
             <></>
@@ -98,11 +109,16 @@ const SingleYourItem = () => {
                   className="ic-m-r-btn"
                   onClick={() => {
                     setDataLoader(true);
-                    axios.delete(`https://cgc-seller-server.vercel.app/api/products/${id}`).then(()=>{
-                      setModel(2);
-                    }).catch(()=>{
-                      setModel(3);
-                    })
+                    axios
+                      .delete(
+                        `https://cgc-seller-server.vercel.app/api/products/${id}`
+                      )
+                      .then(() => {
+                        setModel(2);
+                      })
+                      .catch(() => {
+                        setModel(3);
+                      });
                   }}
                 >
                   <DeleteFilled />

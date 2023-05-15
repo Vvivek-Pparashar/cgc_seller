@@ -10,53 +10,35 @@ import GoogleButton from "react-google-button";
 import { handleAuth } from "../utils/auth";
 import { setLogin } from "../store/slice/loginSlice";
 import { useDispatch } from "react-redux";
+import ModelView from "../model/ModelView";
 
 const AddItem = () => {
-  // const [login, setLogin] = useState(null);
   const dispatch = useDispatch();
-  const [itemData, setItemData] = useState({
-    title: "",
-    price: "",
-    category: "",
-    name: "",
-    phoneNO: "",
-    email: localStorage.getItem("email"),
-    img: "",
-  });
+  const data = useSelector((state) => state.form);
 
-  const changeImg = (payLoad) => {
-    setItemData({ ...itemData, img: payLoad });
-  };
-
-  const changeFormData = (payLoad) => {
-    setItemData({ ...payLoad, img: itemData.img, email: itemData.email });
-    // submit()
-  };
+  const [dataLoader, setDataLoader] = useState(false);
+  const [model, setModel] = useState(1);
 
   const submit = () => {
+    setDataLoader(true);
     axios
-      .post(
-        "https://cgc-seller-server.vercel.app/api/products",
-        {
-          ...itemData,
-          email: itemData.email,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
-      .then((response) => {
-        console.log(response);
+      .post("https://cgc-seller-server.vercel.app/api/products", { ...data })
+      .then((res) => {
+        console.log(res);
+        setModel(2);
       })
       .catch((err) => {
         console.log(err);
+        setModel(3);
       });
   };
 
   const handleLogin = () => {
     dispatch(setLogin(true));
+  };
+
+  const handleModel = () => {
+    setDataLoader(false);
   };
 
   const login = useSelector((state) => state.login.value);
@@ -65,17 +47,27 @@ const AddItem = () => {
       <Layout className="main">
         <NavBar />
         <Layout className="site-layout" id="main-comp">
+          {dataLoader ? (
+            <div>
+              <ModelView
+                model={model}
+                data={[
+                  { p: "Processing Your Data" },
+                  { p: "Your Item is successfully Added", link: "/" },
+                ]}
+                handleModel={handleModel}
+              />
+            </div>
+          ) : (
+            <></>
+          )}
           {login ? (
             <div className="ic-m">
               <div className="ic-m-l">
-                <WebCam changeImg={changeImg} />
+                <WebCam />
               </div>
               <div className="ic-m-r">
-                <FormComp
-                  changeFormData={changeFormData}
-                  submit={submit}
-                  itemData={itemData}
-                />
+                <FormComp submit={submit} />
               </div>
             </div>
           ) : (
@@ -87,6 +79,7 @@ const AddItem = () => {
                 alignItems: "center",
                 flexDirection: "column",
                 gap: "20px",
+                textAlign: "center",
               }}
             >
               <h2 style={{ fontSize: "30px" }}> Sign In to add Item</h2>

@@ -1,17 +1,28 @@
 import React from "react";
 import { InputNumber, Form, Input, Select } from "antd";
 import "./formComp.css";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  cngCategory,
+  cngName,
+  cngPhoneNo,
+  cngPrice,
+  cngTitle,
+} from "../../store/slice/formSlice";
 
-// const { Option } = Select;
+const FormComp = ({ submit }) => {
+  const dispatch = useDispatch();
 
-const FormComp = ({ changeFormData, submit, itemData }) => {
+  const data = useSelector((state) => state.form);
+  console.log(data)
+
   const onFinish = (values) => {
-    console.log("Success:", values);
-    changeFormData(values);
-    submit();
-  };
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
+    if (data.img) {
+      console.log("vivek isgr8");
+      submit();
+    } else {
+      alert("capture img");
+    }
   };
   return (
     <>
@@ -30,8 +41,6 @@ const FormComp = ({ changeFormData, submit, itemData }) => {
           remember: true,
         }}
         onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-        // autoComplete="
       >
         <Form.Item
           label="Title"
@@ -43,7 +52,11 @@ const FormComp = ({ changeFormData, submit, itemData }) => {
             },
           ]}
         >
-          <Input />
+          <Input
+            onChange={(e) => {
+              dispatch(cngTitle(e.target.value));
+            }}
+          />
         </Form.Item>
         <Form.Item
           label="Price"
@@ -55,7 +68,12 @@ const FormComp = ({ changeFormData, submit, itemData }) => {
             },
           ]}
         >
-          <InputNumber addonBefore={"₹"} />
+          <InputNumber
+            addonBefore={"₹"}
+            onChange={(e) => {
+              dispatch(cngPrice(e));
+            }}
+          />
         </Form.Item>
 
         <Form.Item
@@ -68,7 +86,12 @@ const FormComp = ({ changeFormData, submit, itemData }) => {
             },
           ]}
         >
-          <Select>
+          <Select
+            onChange={(e) => {
+              console.log(e);
+              dispatch(cngCategory(e));
+            }}
+          >
             <Select.Option value="Book">Book</Select.Option>
             <Select.Option value="Drafter">Drafter</Select.Option>
             <Select.Option value="Lab Coat">Lab Coat</Select.Option>
@@ -87,7 +110,11 @@ const FormComp = ({ changeFormData, submit, itemData }) => {
             },
           ]}
         >
-          <Input />
+          <Input
+            onChange={(e) => {
+              dispatch(cngName(e.target.value));
+            }}
+          />
         </Form.Item>
 
         <Form.Item
@@ -97,18 +124,26 @@ const FormComp = ({ changeFormData, submit, itemData }) => {
             { required: true, message: "Please input your phone number!" },
           ]}
         >
-          <Input addonBefore={"+91"} style={{ width: "100%" }} maxLength={10} />
+          <Input
+            addonBefore={"+91"}
+            style={{ width: "100%" }}
+            maxLength={10}
+            onChange={(e) => {
+              dispatch(cngPhoneNo(e.target.value));
+            }}
+          />
         </Form.Item>
 
-        <Form.Item
-          name="email"
-          label="E-mail"
-        >
-          <Input placeholder={itemData.email} disabled value = {itemData.email}/>
+        <Form.Item name="email" label="E-mail">
+          <Input placeholder={data.email} disabled value={data.email} />
         </Form.Item>
 
         <div className="form-btn-cont">
-          <button className="captureBtn" type="primary" htmlType="submit">
+          <button
+            className="captureBtn"
+            type="primary"
+            style={{ cursor: `${data.img !== "" ? "pointer" : "not-allowed"}` }}
+          >
             Submit
           </button>
         </div>

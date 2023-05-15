@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import Webcam from "react-webcam";
 import { CameraOutlined, RetweetOutlined } from "@ant-design/icons";
 import "./webCam.css";
+import { useDispatch, useSelector } from "react-redux";
+import { cngImg } from "../../store/slice/formSlice";
 
-const WebCam = ({ changeImg }) => {
-  const [picture, setPicture] = useState("");
-  
+const WebCam = () => {
+  const dispatch = useDispatch();
+  const picture = useSelector((state) => state.form.img);
+
   const videoConstraints = {
     width: 400,
     height: 400,
@@ -15,13 +18,9 @@ const WebCam = ({ changeImg }) => {
   const webcamRef = React.useRef(null);
   const capture = React.useCallback(() => {
     const pictureSrc = webcamRef.current.getScreenshot();
-    setPicture(pictureSrc);
-    changeImg(pictureSrc);
-  }, [changeImg]);
+    dispatch(cngImg(pictureSrc));
+  }, []);
 
-  const reTake = () => {
-    setPicture("");
-  };
   return (
     <>
       {picture === "" ? (
@@ -57,7 +56,7 @@ const WebCam = ({ changeImg }) => {
         <button
           onClick={(e) => {
             e.preventDefault();
-            reTake();
+            dispatch(cngImg(""));
           }}
           className="captureBtn"
         >
