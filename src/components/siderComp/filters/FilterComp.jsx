@@ -1,15 +1,16 @@
 import { Radio, Space } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { changeFilter } from "../../store/slice/filterSlice";
+import { changeSiderState } from "../../store/slice/collapsedSlice";
 const FilterComp = () => {
   const dispatch = useDispatch();
   const value = useSelector((state) => state.filter.value);
-  const onChange = (e) => {
-    dispatch(changeFilter(e.target.value));
-  };
 
   return (
-    <Radio.Group onChange={onChange} value={value}>
+    <Radio.Group onChange={(e)=>{
+      dispatch(changeFilter(e.target.value));
+      dispatch(changeSiderState(false));
+    }} value={value}>
       <Space direction="vertical">
         <Radio value={"All"}>All</Radio>
         <Radio value={"Book"}>Books</Radio>

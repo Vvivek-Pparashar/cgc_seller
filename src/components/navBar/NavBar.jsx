@@ -85,16 +85,16 @@ const NavBar = () => {
 
             <ul className="menu-sm-items">
               <li>
-                <Link to={"/"}>Home</Link>
+                <Link to={"/"}  onClick={()=>dispatch(changeNavbarState(false))}>Home</Link>
               </li>
               <li>
-                <Link to={"/about"}>About</Link>
+                <Link to={"/about"} onClick={()=>dispatch(changeNavbarState(false))}>About</Link>
               </li>
               <li>
-                <Link to={"/contact"}>Contact</Link>
+                <Link to={"/contact"} onClick={()=>dispatch(changeNavbarState(false))}>Contact</Link>
               </li>
               <li>
-                <Link to={"/faq"}>Faq's</Link>
+                <Link to={"/faq"} onClick={()=>dispatch(changeNavbarState(false))}>Faq's</Link>
               </li>
             </ul>
           </div>
@@ -126,6 +126,7 @@ const NavBar = () => {
                 border: "none",
                 borderRadius: "20px",
                 cursor: "pointer",
+                background: "#3fa9f9"
               }}
               onClick={() => {
                 handleAuth(handleLogin);

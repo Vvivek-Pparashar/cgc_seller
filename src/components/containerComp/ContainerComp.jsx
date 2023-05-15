@@ -76,10 +76,10 @@ const ContinerComp = ({ change }) => {
                     <img className="card-img" alt="example" src={e.img} />
 
                     <div className="card-con">
-                      <h3>{e.title}</h3>
+                      <h3 style={{color:"black", fontSize:"20px"}}>{e.title}</h3>
                       <div className="card-con-btm">
-                        <p>price : {e.price}</p>
-                        <p>Buy</p>
+                        <p style={{fontSize:"17px"}}>₹ {e.price}</p>
+                        <p style={{fontSize:"17px"}}>{e.category}</p>
                       </div>
                     </div>
                   </div>

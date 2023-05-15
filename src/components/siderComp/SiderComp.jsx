@@ -14,7 +14,7 @@ const SiderComp = () => {
         onClick={() => {
           dispatch(changeSiderState(false));
         }}
-        style={{ position: "absolute" , top:"10px", right:"10px", fontSize:"20px"}}
+        className="sider-close-icon"
       />
       <h1>Apply Filters</h1>
       <FilterComp />
