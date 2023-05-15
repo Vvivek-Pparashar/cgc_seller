@@ -1,52 +1,29 @@
-.sider-comp {
+.sider {
   width: 200px;
   height: 90vh;
   position: sticky;
   top: 64px;
   left: 0px;
-  padding: 7px 0px;
+  padding: 7px 30px;
   border-right: 1px solid #dbdbdb;
   background-color: white;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
 }
 
 @media only screen and (max-width: 750px) {
   .sider {
     position: fixed;
-    top: 64px;
-    left: -100%;
-    width: 100vw;
+    z-index: 100;
+    width: 250px;
     height: 100%;
-
-    z-index: -2;
-    transition: 0.5s linear all;
+    left: -80vw;
+    top: 64px;
+    transition:0.2s ease-in-out;
   }
-
   .sider.active {
-    width: 100vw;
-    height: 100%;
-    position: absolute;
-    z-index: 1000;
     position: fixed;
-    top: 0;
-    left: 0;
-    transition: 0.5 linear;
-  }
-
-  .sider-comp {
-    left: -100%;
-    height: 100%;
-    transition: 0.5s;
-    top: 64px;
-    position: fixed;
-  }
-
-  .sider-comp.active {
-    top: 64px;
-    position: fixed;
-    left: 0;
-    z-index: 100000;
-    height: 100%;
+    left: 0px;
   }
 }

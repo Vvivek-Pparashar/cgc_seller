@@ -8,49 +8,50 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { useDispatch, useSelector } from "react-redux";
 import { changeFilter } from "../store/slice/filterSlice";
 import CardCompSkeleton from "../skeleton/CardCompSkeleton";
+import { changeSiderState } from "../store/slice/collapsedSlice";
 
 // import DataBase from "./DataBase";
 // import CardComp from "./CardComp";
 
 const { Content } = Layout;
 
-const ContinerComp = ({ mode, D2L, L2D, change }) => {
+const ContinerComp = ({ change }) => {
   const [data, setData] = useState([]);
+  const [filterData, setFilterData] = useState([]);
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const filter = useSelector((state) => state.filter.value);
 
   useEffect(() => {
-    dispatch(changeFilter("All"));
-  }, []);
+    console.log("chchch");
+    if (filter === "All") {
+      setFilterData(data);
+    } else {
+      setFilterData(data.filter((item) => item.category === filter));
+    }
+  }, [filter]);
 
   useEffect(() => {
+    dispatch(changeFilter("All"));
     axios
       .get("https://cgc-seller-server.vercel.app/api/products")
       .then((response) => {
-        if (filter === "All") {
-          setData(response.data);
-        } else {
-          setData(response.data.filter((item) => item.category === filter));
-        }
-
+        setData(response.data);
+        setFilterData(response.data);
         setLoading(false);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [filter]);
-
-  const login = useSelector((state) => state.login.value);
-
-  console.log(login);
+  }, []);
 
   return (
     <Content className="site-layout-background">
-      <button className="filter-btn" onClick={change}>
-        Filters
+      <button className="filter-btn" onClick={()=>{
+        dispatch(changeSiderState(true))
+      }}>
+        Filter
       </button>
-      {/* <button >{login ? "True" : "false"}</button> */}
       <Row
         gutter={{
           xs: 8,
@@ -61,8 +62,8 @@ const ContinerComp = ({ mode, D2L, L2D, change }) => {
       >
         {loading ? (
           <CardCompSkeleton />
-        ) : data.length ? (
-          data.reverse().map((e) => {
+        ) : filterData.length ? (
+          filterData.reverse().map((e) => {
             return (
               <Col
                 xs={{ span: 12 }}
@@ -114,23 +115,6 @@ const ContinerComp = ({ mode, D2L, L2D, change }) => {
           </div>
         )}
       </Row>
-
-      <FloatButton.Group icon={<SettingOutlined />} trigger="click">
-        <FloatButton
-          icon={<i class="fa fa-sun-o" aria-hidden="true"></i>}
-          type={mode.mode === "light" ? "primary" : "default"}
-          onClick={() => {
-            D2L();
-          }}
-        />
-        <FloatButton
-          icon={<i class="fa fa-moon-o" aria-hidden="true"></i>}
-          type={mode.mode === "dark" ? "primary" : "default"}
-          onClick={() => {
-            L2D();
-          }}
-        />
-      </FloatButton.Group>
     </Content>
   );
 };

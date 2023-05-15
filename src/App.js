@@ -8,46 +8,13 @@ import FooterComp from "./components/footerComp/FooterComp";
 import { ScrollRestoration } from "react-router-dom";
 
 const App = () => {
-  const [collapsed, setCollapsed] = useState(false);
-  const [mode, setMode] = useState({ mode: "light" });
-
-  const [sider, setSider] = useState(false);
-
-  const change = () => {
-    console.log("jjjj");
-    setSider(true);
-  };
-
-  const change2 = () => {
-    console.log("ommmg");
-    setSider(false);
-  };
-
-  const L2D = () => {
-    setMode({ mode: "dark" });
-  };
-
-  const D2L = () => {
-    setMode({ mode: "light" });
-  };
-
-  const changeColl = () => {
-    setCollapsed(!collapsed);
-  };
-
   return (
     <>
       <Layout className="main">
-        <NavBar mode={!mode} collapsed={collapsed} changeColl={changeColl} />
-
+        <NavBar />
         <Layout className="site-layout" id="main-comp">
-          <SiderComp
-            mode={mode}
-            collapsed={collapsed}
-            sider={sider}
-            change2={change2}
-          />
-          <ContinerComp mode={mode} D2L={D2L} L2D={L2D} change={change} />
+          <SiderComp />
+          <ContinerComp />
         </Layout>
         <FooterComp />
       </Layout>

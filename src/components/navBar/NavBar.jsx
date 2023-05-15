@@ -6,12 +6,14 @@ import AvatarComp from "./AvatarComp";
 import { useDispatch, useSelector } from "react-redux";
 import { setLogOut, setLogin } from "../store/slice/loginSlice";
 import { MenuOutlined, CloseOutlined } from "@ant-design/icons";
+import { changeNavbarState } from "../store/slice/collapsedSlice";
 
 const NavBar = () => {
   const dispatch = useDispatch();
   const login = useSelector((state) => state.login.value);
+  const sider = useSelector((state)=>state.collapsed.sider)
 
-  const [open, setOpen] = useState(false);
+  const open = useSelector((state)=>state.collapsed.navbar)
   const [email, setEmail] = useState({
     email: localStorage.getItem("email"),
     avatar: localStorage.getItem("avatar"),
@@ -42,30 +44,20 @@ const NavBar = () => {
     });
   }, [login]);
 
-  console.log("vivek auth");
-  // console.log(email);
   return (
     <>
       <nav className="navbar">
         <div className="navbar-container container">
+          <MenuOutlined
+            onClick={() => {if(!sider){dispatch(changeNavbarState(true))}}}
+            className="sm-menu-icon"
+          />
 
-          {open ? (
-            <CloseOutlined
-              onClick={() => setOpen(false)}
-              style={{ fontSize: "20px" }}
-            />
-          ) : (
-            <MenuOutlined
-              onClick={() => setOpen(true)}
-              style={{ fontSize: "20px" }}
-            />
-          )}
-
-          <Link to={"/"} style={{display:"flex", justifyContent:"center"}}>
+          <Link to={"/"} style={{ display: "flex", justifyContent: "center" }}>
             <img
               src="../../../logo2.png"
               alt="logo"
-              style={{ width: "200px" }}
+              style={{ width: "190px" }}
             />
           </Link>
 
@@ -77,6 +69,20 @@ const NavBar = () => {
                 style={{ width: "180px" }}
               />
             </Link>
+
+            <CloseOutlined
+              className="sm-menu-icon"
+              onClick={() => 
+                dispatch(changeNavbarState(false))
+              }
+              style={{
+                position: "absolute",
+                top: "15px",
+                right: "15px",
+                fontSize: "25px",
+              }}
+            />
+
             <ul className="menu-sm-items">
               <li>
                 <Link to={"/"}>Home</Link>

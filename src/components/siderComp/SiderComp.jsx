@@ -1,16 +1,23 @@
 import React from "react";
 import "./SiderComp.css";
 import FilterComp from "./filters/FilterComp";
+import { useDispatch, useSelector } from "react-redux";
+import { changeSiderState } from "../store/slice/collapsedSlice";
+import { CloseOutlined } from "@ant-design/icons";
 
-const SiderComp = ({ sider, change2 }) => {
+const SiderComp = () => {
+  const dispatch = useDispatch();
+  const open = useSelector((state) => state.collapsed.sider);
   return (
-    <div className={`sider ${sider ? "active" : ""}`}>
-      <div className={`sider-comp  ${sider ? "active" : ""}`}>
-        <div style={{ display: "flex", flexDirection: "column", gap: "30px" }}>
-          <h2>Apply Filter</h2>
-          <FilterComp />
-        </div>
-      </div>
+    <div className={`sider ${open ? "active" : ""}`}>
+      <CloseOutlined
+        onClick={() => {
+          dispatch(changeSiderState(false));
+        }}
+        style={{ position: "absolute" , top:"10px", right:"10px", fontSize:"20px"}}
+      />
+      <h1>Apply Filters</h1>
+      <FilterComp />
     </div>
   );
 };
