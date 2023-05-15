@@ -1,0 +1,28 @@
+.dlt-btn {
+  position: absolute;
+  top: 10px;
+  right: 30px;
+  font-size: 15px;
+  background: red;
+  padding: 10px;
+  z-index: 100000;
+  clip-path: circle();
+  cursor: pointer;
+  color: white;
+}
+
+.your-item-h1 {
+  font-size: 35px;
+  text-align: center;
+  color: #3fa9f9;
+  margin-bottom: 20px;
+}
+
+.yi-sign {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}

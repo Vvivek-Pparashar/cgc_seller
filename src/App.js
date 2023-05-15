@@ -1,5 +1,5 @@
 import { Layout } from "antd";
-import React, { useState } from "react";
+import React from "react";
 import "./App.css";
 import ContinerComp from "./components/containerComp/ContainerComp";
 import NavBar from "./components/navBar/NavBar";

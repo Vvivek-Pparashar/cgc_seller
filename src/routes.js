@@ -4,6 +4,7 @@ import ItemContainer from "./components/singleItem/ItemContainer";
 import { createBrowserRouter } from "react-router-dom";
 import AddItem from "./components/addItem/AddItem";
 import YourItem from "./components/yourItem/YourItem";
+import SingleYourItem from "./components/yourItem/SingleYourItem/SingleYourItem/SingleYourItem";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,11 @@ const router = createBrowserRouter([
   {
     path: "/yourItem",
     element: <YourItem />,
+  },
+
+  {
+    path: "/yourItem/:id",
+    element: <SingleYourItem />,
   },
 ]);
 

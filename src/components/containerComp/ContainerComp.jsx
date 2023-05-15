@@ -10,9 +10,6 @@ import { changeFilter } from "../store/slice/filterSlice";
 import CardCompSkeleton from "../skeleton/CardCompSkeleton";
 import { changeSiderState } from "../store/slice/collapsedSlice";
 
-// import DataBase from "./DataBase";
-// import CardComp from "./CardComp";
-
 const { Content } = Layout;
 
 const ContinerComp = ({ change }) => {
@@ -47,9 +44,12 @@ const ContinerComp = ({ change }) => {
 
   return (
     <Content className="site-layout-background">
-      <button className="filter-btn" onClick={()=>{
-        dispatch(changeSiderState(true))
-      }}>
+      <button
+        className="filter-btn"
+        onClick={() => {
+          dispatch(changeSiderState(true));
+        }}
+      >
         Filter
       </button>
       <Row
@@ -76,10 +76,12 @@ const ContinerComp = ({ change }) => {
                     <img className="card-img" alt="example" src={e.img} />
 
                     <div className="card-con">
-                      <h3 style={{color:"black", fontSize:"20px"}}>{e.title}</h3>
+                      <h3 style={{ color: "black", fontSize: "19px" }}>
+                        {e.title}
+                      </h3>
                       <div className="card-con-btm">
-                        <p style={{fontSize:"17px"}}>₹ {e.price}</p>
-                        <p style={{fontSize:"17px"}}>{e.category}</p>
+                        <p style={{ fontSize: "17px" }}>₹ {e.price}</p>
+                        <p style={{ fontSize: "17px" }}>{e.category}</p>
                       </div>
                     </div>
                   </div>
@@ -88,29 +90,10 @@ const ContinerComp = ({ change }) => {
             );
           })
         ) : (
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              width: "100%",
-              flexDirection: "column",
-              gap: "20px",
-            }}
-          >
+          <div className="cnt-addItem-btn-cnt">
             <h1 style={{ fontSize: "30px" }}>Nothing Found!!!</h1>
             <Link to={"/addItem"}>
-              <button
-                style={{
-                  padding: "7px 20px",
-                  borderRadius: "20px",
-                  border: "none",
-                  background: "black",
-                  color: "white",
-                  cursor: "pointer",
-                }}
-              >
-                Add Item
-              </button>
+              <button className="cnt-addItem-btn">Add Item</button>
             </Link>
           </div>
         )}
