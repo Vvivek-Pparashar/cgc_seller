@@ -58,8 +58,8 @@ const SingleYourItem = () => {
               <ModelView
                 model={model}
                 data={[
-                  { p: "Processing Your Data" },
-                  { p: "Your Item is successfully Added", link: "/yourItem" },
+                  { p: "Processing Your Data For Deletion" },
+                  { p: "Your Item is successfully Deleting", link: "/yourItem" },
                 ]}
                 handleModel={handleModel}
               />
