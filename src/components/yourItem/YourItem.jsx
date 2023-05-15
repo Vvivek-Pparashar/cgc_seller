@@ -3,15 +3,15 @@ import NavBar from "../navBar/NavBar";
 import FooterComp from "../footerComp/FooterComp";
 import { Col, Layout, Row } from "antd";
 import axios from "axios";
-import { Link, ScrollRestoration, useParams } from "react-router-dom";
+import { Link, ScrollRestoration } from "react-router-dom";
 import { Content } from "antd/es/layout/layout";
 import { useDispatch, useSelector } from "react-redux";
 import GoogleButton from "react-google-button";
 import { handleAuth } from "../utils/auth";
 import { setLogin } from "../store/slice/loginSlice";
 import CardCompSkeleton from "../skeleton/CardCompSkeleton";
-import { DeleteFilled, DeleteOutlined } from "@ant-design/icons";
-import './YourItem.css'
+import { DeleteFilled } from "@ant-design/icons";
+import "./YourItem.css";
 
 const YourItem = () => {
   const login = useSelector((state) => state.login.value);
@@ -68,18 +68,6 @@ const YourItem = () => {
                           lg={{ span: 6 }}
                           style={{ marginBottom: "20px" }}
                         >
-                          <div
-                            className="dlt-btn"
-                            onClick={() => {
-                              axios.delete(
-                                `https://cgc-seller-server.vercel.app/api/products/${e._id}`
-                              );
-                              console.log("clicked");
-                            }}
-                          >
-                            <DeleteFilled />
-                          </div>
-
                           <Link to={`/yourItem/${e._id}`}>
                             <div id="card">
                               <img
@@ -89,10 +77,18 @@ const YourItem = () => {
                               />
 
                               <div className="card-con">
-                                <h3 style={{fontSize:"19px", color:"black"}}>{e.title}</h3>
+                                <h3
+                                  style={{ fontSize: "19px", color: "black" }}
+                                >
+                                  {e.title}
+                                </h3>
                                 <div className="card-con-btm">
-                                  <p style={{ fontSize: "17px" }}>$ {e.price}</p>
-                                  <p style={{ fontSize: "17px" }}>{e.category}</p>
+                                  <p style={{ fontSize: "17px" }}>
+                                    $ {e.price}
+                                  </p>
+                                  <p style={{ fontSize: "17px" }}>
+                                    {e.category}
+                                  </p>
                                 </div>
                               </div>
                             </div>
@@ -101,10 +97,12 @@ const YourItem = () => {
                       );
                     })
                 ) : (
-                  <div style={{ display: "flex", flexDirection: "column" }}>
-                    <h3>You have selled all of your item's </h3>
+                  <div className="empty-youritem-cnt">
+                    <h3 style={{ fontSize: "25px" }}>
+                      You have selled all of your item's
+                    </h3>
                     <Link to={"/addItem"}>
-                      <div>Add item</div>
+                      <button className="empty-youritem-btn">Add item</button>
                     </Link>
                   </div>
                 )}

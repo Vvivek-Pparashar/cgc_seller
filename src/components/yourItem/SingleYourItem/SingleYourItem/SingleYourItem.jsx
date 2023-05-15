@@ -7,11 +7,14 @@ import axios from "axios";
 import { useParams } from "react-router";
 import { ArrowLeftOutlined, DeleteFilled } from "@ant-design/icons";
 import SingleItemSkeleton from "../../../skeleton/SingleItemSkeleton";
+import ModelView from "../../model/ModelView";
 
 const SingleYourItem = () => {
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
+  const [dataLoader, setDataLoader] = useState(false);
   const [data, setData] = useState({});
+  const [model, setModel] = useState(1);
 
   useEffect(() => {
     axios
@@ -46,6 +49,13 @@ const SingleYourItem = () => {
         <NavBar />
 
         <Layout className="site-layout" id="main-comp">
+          {dataLoader ? (
+            <div>
+              <ModelView model={model} />
+            </div>
+          ) : (
+            <></>
+          )}
           {loading ? (
             <SingleItemSkeleton ownerData={ownerData} />
           ) : (
@@ -80,8 +90,20 @@ const SingleYourItem = () => {
                 </ul>
 
                 <div
-                  style={{ marginTop: "10px", background: "red" }}
+                  style={{
+                    marginTop: "10px",
+                    background: "red",
+                    cursor: "pointer",
+                  }}
                   className="ic-m-r-btn"
+                  onClick={() => {
+                    setDataLoader(true);
+                    axios.delete(`https://cgc-seller-server.vercel.app/api/products/${id}`).then(()=>{
+                      setModel(2);
+                    }).catch(()=>{
+                      setModel(3);
+                    })
+                  }}
                 >
                   <DeleteFilled />
                   Delete Item
