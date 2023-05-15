@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import NavBar from "../../../navBar/NavBar";
 import { Layout } from "antd";
 import FooterComp from "../../../footerComp/FooterComp";
-import { Link } from "react-router-dom";
+import { Link, ScrollRestoration } from "react-router-dom";
 import axios from "axios";
 import { useParams } from "react-router";
 import { ArrowLeftOutlined, DeleteFilled } from "@ant-design/icons";
@@ -99,6 +99,7 @@ const SingleYourItem = () => {
         </Layout>
       </Layout>
       <FooterComp />
+      <ScrollRestoration />
     </>
   );
 };

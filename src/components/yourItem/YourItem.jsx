@@ -3,7 +3,7 @@ import NavBar from "../navBar/NavBar";
 import FooterComp from "../footerComp/FooterComp";
 import { Col, Layout, Row } from "antd";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { Link, ScrollRestoration, useParams } from "react-router-dom";
 import { Content } from "antd/es/layout/layout";
 import { useDispatch, useSelector } from "react-redux";
 import GoogleButton from "react-google-button";
@@ -89,10 +89,10 @@ const YourItem = () => {
                               />
 
                               <div className="card-con">
-                                <h3>{e.title}</h3>
+                                <h3 style={{fontSize:"19px", color:"black"}}>{e.title}</h3>
                                 <div className="card-con-btm">
-                                  <p>$ {e.price}</p>
-                                  <p>{e.category}</p>
+                                  <p style={{ fontSize: "17px" }}>$ {e.price}</p>
+                                  <p style={{ fontSize: "17px" }}>{e.category}</p>
                                 </div>
                               </div>
                             </div>
@@ -118,6 +118,7 @@ const YourItem = () => {
           )}
         </Layout>
         <FooterComp />
+        <ScrollRestoration />
       </Layout>
     </>
   );

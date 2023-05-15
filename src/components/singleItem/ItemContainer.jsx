@@ -3,7 +3,7 @@ import NavBar from "../navBar/NavBar";
 import { Layout } from "antd";
 import FooterComp from "../footerComp/FooterComp";
 import "./ItemContainer.css";
-import { Link } from "react-router-dom";
+import { Link, ScrollRestoration } from "react-router-dom";
 import axios from "axios";
 import { useParams } from "react-router";
 import { ArrowLeftOutlined, PhoneOutlined } from "@ant-design/icons";
@@ -101,6 +101,7 @@ const ItemContainer = () => {
         </Layout>
       </Layout>
       <FooterComp />
+      <ScrollRestoration />
     </>
   );
 };
