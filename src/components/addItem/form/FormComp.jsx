@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { InputNumber, Form, Input, Select } from "antd";
 import "./formComp.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
   cngCategory,
+  cngEmail,
   cngName,
   cngPhoneNo,
   cngPrice,
@@ -14,7 +15,9 @@ const FormComp = ({ submit }) => {
   const dispatch = useDispatch();
 
   const data = useSelector((state) => state.form);
-  console.log(data)
+  const login = useSelector((state) => state.login.value);
+
+  console.log(data);
 
   const onFinish = (values) => {
     if (data.img) {
@@ -24,6 +27,10 @@ const FormComp = ({ submit }) => {
       alert("capture img");
     }
   };
+
+  useEffect(() => {
+    dispatch(cngEmail("s"));
+  }, [login]);
   return (
     <>
       <Form

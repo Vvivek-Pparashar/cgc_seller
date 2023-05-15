@@ -31,10 +31,14 @@ const formSlice = createSlice({
     cngImg(state, action) {
       state.img = action.payload;
     },
+
+    cngEmail(state, action) {
+      state.email = localStorage.getItem("email");
+    },
   },
 });
 
 export { formSlice };
 
-export const { cngCategory, cngImg, cngName, cngPhoneNo, cngPrice, cngTitle } =
+export const { cngCategory, cngImg, cngName, cngPhoneNo, cngPrice, cngTitle, cngEmail } =
   formSlice.actions;
