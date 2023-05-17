@@ -9,7 +9,12 @@
   background-color: white;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 20px;
+  padding-top: 20px;
+}
+
+.filter-h3{
+  font-size: 20px;
 }
 
 .sider-close-icon{
@@ -26,17 +31,22 @@
     top: 64px;
     transition:0.4s ease-in-out;
     border-top: 1px solid #dbdbdb;
+    padding-top: 30px;
+    
   }
   .sider.active {
     position: fixed;
     left: 0px;
   }
 
+  .filter-h3{
+    font-size: 20px;
+  }
   .sider-close-icon{
     display: block;
     position: absolute;
     top: 10px;
     right: 10px;
-    font-size: 20px;
+    font-size: 25px;
   }
 }

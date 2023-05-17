@@ -16,7 +16,7 @@ const SiderComp = () => {
         }}
         className="sider-close-icon"
       />
-      <h1>Apply Filters</h1>
+      <h3 className="filter-h3">Apply Filters</h3>
       <FilterComp />
     </div>
   );
