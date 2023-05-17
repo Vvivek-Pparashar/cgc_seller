@@ -19,7 +19,10 @@ const ItemContainer = () => {
     axios
       .get(`https://cgc-seller-server.vercel.app/api/products/${id}`)
       .then((res) => {
-        setData({...res.data.product, email : res.data.product.email.replace("@gmail.com", "")});
+        setData({
+          ...res.data.product,
+          email: res.data.product.email.replace("@gmail.com", ""),
+        });
         setLoading(false);
       })
       .catch((err) => {
@@ -83,7 +86,7 @@ const ItemContainer = () => {
 
                 <ReactWhatsapp
                   number={`+91${data.phoneNo}`}
-                  message={`Hello ${data.name}.`}
+                  message={`Hello ${data.name} 👋👋, I want to enquire about your product \n title : ${data.title} \n price : ₹ ${data.price} \n on CGC Seller.`}
                   className="ic-m-r-btn"
                 >
                   <img
