@@ -51,14 +51,7 @@ const ContinerComp = ({ change }) => {
       >
         Filter
       </button>
-      <Row
-        gutter={{
-          xs: 8,
-          sm: 16,
-          md: 24,
-          lg: 32,
-        }}
-      >
+      <Row gutter={[18, 2]} style={{ padding: "0 10px" }}>
         {loading ? (
           <CardCompSkeleton />
         ) : filterData.length ? (
@@ -71,16 +64,19 @@ const ContinerComp = ({ change }) => {
                 style={{ marginBottom: "20px" }}
               >
                 <Link to={`/item/${e._id}`}>
-                  <div id="card">
+                  <div
+                    id="card"
+                    style={{ boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)" }}
+                  >
                     <img className="card-img" alt="example" src={e.img} />
 
                     <div className="card-con">
-                      <h3 style={{ color: "black", fontSize: "19px" }}>
+                      <h3 style={{ color: "white", fontSize: "17px" }}>
                         {e.title}
                       </h3>
                       <div className="card-con-btm">
-                        <p style={{ fontSize: "17px" }}>₹ {e.price}</p>
-                        <p style={{ fontSize: "17px" }}>{e.category}</p>
+                        <p style={{ fontSize: "15px" }}>₹ {e.price}</p>
+                        <p style={{ fontSize: "15px" }}>{e.category}</p>
                       </div>
                     </div>
                   </div>
