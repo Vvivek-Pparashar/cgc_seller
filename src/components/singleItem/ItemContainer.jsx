@@ -86,7 +86,7 @@ const ItemContainer = () => {
 
                 <ReactWhatsapp
                   number={`+91${data.phoneNo}`}
-                  message={`Hello ${data.name} 👋👋, I want to enquire about your product \n title : ${data.title} \n price : ₹ ${data.price} \n on CGC Seller.`}
+                  message={`Hello ${data.name} 👋👋, I want to enquire about your product\ntitle : ${data.title}\nprice : ₹ ${data.price}\non CGC Seller.`}
                   className="ic-m-r-btn"
                 >
                   <img
