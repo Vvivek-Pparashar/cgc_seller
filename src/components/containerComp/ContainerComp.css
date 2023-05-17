@@ -3,6 +3,7 @@
   padding: 24px 24px;
   background: white;
   height: 100%;
+  min-height: 90vh;
 }
 
 .filter-btn {

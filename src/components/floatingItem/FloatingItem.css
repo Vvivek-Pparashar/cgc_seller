@@ -3,7 +3,7 @@
   bottom: 30px;
   right: 30px;
   padding: 11px 11px;
-  background: brown;
+  background: #3fa9f9;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,10 +12,11 @@
   cursor: pointer;
   gap: 10px;
   z-index: 100000;
+  font-size: 17px;
 }
 
 .flt-add-icon {
-  font-size: 30px;
+  font-size: 25px;
 }
 
 @media (max-width: 750px) {
@@ -25,6 +26,6 @@
   }
 
   .flt-add-icon {
-    font-size: 40px;
+    font-size: 30px;
   }
 }

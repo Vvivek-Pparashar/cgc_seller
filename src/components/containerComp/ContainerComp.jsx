@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Layout, Row, FloatButton, Col } from "antd";
-import { SettingOutlined } from "@ant-design/icons";
+import { Layout, Row, Col } from "antd";
 import "./ContainerComp.css";
 import { Link } from "react-router-dom";
 import axios from "axios";

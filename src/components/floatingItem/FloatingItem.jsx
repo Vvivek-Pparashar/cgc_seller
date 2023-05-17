@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import AddIcon from "@mui/icons-material/Add";
 import { Link } from "react-router-dom";
-import './FloatingItem.css'
+import "./FloatingItem.css";
+import { PlusOutlined } from "@ant-design/icons";
 
 const FloatingItem = () => {
   const [value, setValue] = useState("ci");
@@ -12,8 +12,8 @@ const FloatingItem = () => {
         onMouseEnter={() => setValue("en")}
         onMouseLeave={() => setValue("ci")}
       >
-        <AddIcon className="flt-add-icon" />
-        {value === "ci" ? "" : "add item"}
+        <PlusOutlined className="flt-add-icon" />
+        {value === "ci" ? "" : <p>Add Item</p>}
       </div>
     </Link>
   );

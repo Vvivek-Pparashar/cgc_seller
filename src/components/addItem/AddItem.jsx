@@ -11,6 +11,7 @@ import { handleAuth } from "../utils/auth";
 import { setLogin } from "../store/slice/loginSlice";
 import { useDispatch } from "react-redux";
 import ModelView from "../model/ModelView";
+import { ScrollRestoration } from "react-router-dom";
 
 const AddItem = () => {
   const dispatch = useDispatch();
@@ -82,12 +83,13 @@ const AddItem = () => {
                 textAlign: "center",
               }}
             >
-              <h2 style={{ fontSize: "30px" }}> Sign In to add Item</h2>
+              <h2 style={{ fontSize: "30px" }}> Log In to add Item</h2>
               <GoogleButton onClick={() => handleAuth(handleLogin)} />
             </div>
           )}
         </Layout>
       </Layout>
+      <ScrollRestoration/>
       <FooterComp />
     </>
   );

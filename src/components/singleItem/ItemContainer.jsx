@@ -19,7 +19,7 @@ const ItemContainer = () => {
     axios
       .get(`https://cgc-seller-server.vercel.app/api/products/${id}`)
       .then((res) => {
-        setData(res.data.product);
+        setData({...res.data.product, email : res.data.product.email.replace("@gmail.com", "")});
         setLoading(false);
       })
       .catch((err) => {

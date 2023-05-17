@@ -70,9 +70,10 @@
   font-size: 20px;
   border-radius: 20px;
   display: flex;
-  gap: 6px;
+  gap: 10px;
   align-items: center;
   justify-content: center;
+  margin-top: 20px;
 }
 
 .ic-m-r-btn:hover {
