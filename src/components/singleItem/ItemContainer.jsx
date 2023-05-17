@@ -8,6 +8,7 @@ import axios from "axios";
 import { useParams } from "react-router";
 import { ArrowLeftOutlined, PhoneOutlined } from "@ant-design/icons";
 import SingleItemSkeleton from "../skeleton/SingleItemSkeleton";
+import ReactWhatsapp from "react-whatsapp";
 
 const ItemContainer = () => {
   const { id } = useParams();
@@ -48,7 +49,7 @@ const ItemContainer = () => {
 
         <Layout className="site-layout" id="main-comp">
           {loading ? (
-            <SingleItemSkeleton ownerData={ownerData}/>
+            <SingleItemSkeleton ownerData={ownerData} />
           ) : (
             <div className="ic-m">
               <div className="ic-m-l">
@@ -80,14 +81,18 @@ const ItemContainer = () => {
                   })}
                 </ul>
 
-                <a
-                  href={`tel:${data.phoneNo}`}
-                  style={{ marginTop: "10px" }}
+                <ReactWhatsapp
+                  number={`+91${data.phoneNo}`}
+                  message={`Hello ${data.name}.`}
                   className="ic-m-r-btn"
                 >
-                  <PhoneOutlined style={{ transform: "rotate(90deg)" }} />
-                  Call Now
-                </a>
+                  <img
+                    src="../../../chat.gif"
+                    alt="chatGif"
+                    style={{ width: "30px" }}
+                  />
+                  <p>Chat Now</p>
+                </ReactWhatsapp>
 
                 <div className="ic-m-r-linkcont">
                   <Link to={"/"} className="ic-m-r-link">

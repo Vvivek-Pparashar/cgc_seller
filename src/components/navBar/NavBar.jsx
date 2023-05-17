@@ -11,9 +11,9 @@ import { changeNavbarState } from "../store/slice/collapsedSlice";
 const NavBar = () => {
   const dispatch = useDispatch();
   const login = useSelector((state) => state.login.value);
-  const sider = useSelector((state)=>state.collapsed.sider)
+  const sider = useSelector((state) => state.collapsed.sider);
 
-  const open = useSelector((state)=>state.collapsed.navbar)
+  const open = useSelector((state) => state.collapsed.navbar);
   const [email, setEmail] = useState({
     email: localStorage.getItem("email"),
     avatar: localStorage.getItem("avatar"),
@@ -49,7 +49,11 @@ const NavBar = () => {
       <nav className="navbar">
         <div className="navbar-container container">
           <MenuOutlined
-            onClick={() => {if(!sider){dispatch(changeNavbarState(true))}}}
+            onClick={() => {
+              if (!sider) {
+                dispatch(changeNavbarState(true));
+              }
+            }}
             className="sm-menu-icon"
           />
 
@@ -72,9 +76,7 @@ const NavBar = () => {
 
             <CloseOutlined
               className="sm-menu-icon"
-              onClick={() => 
-                dispatch(changeNavbarState(false))
-              }
+              onClick={() => dispatch(changeNavbarState(false))}
               style={{
                 position: "absolute",
                 top: "15px",
@@ -85,16 +87,36 @@ const NavBar = () => {
 
             <ul className="menu-sm-items">
               <li>
-                <Link to={"/"}  onClick={()=>dispatch(changeNavbarState(false))}>Home</Link>
+                <Link
+                  to={"/"}
+                  onClick={() => dispatch(changeNavbarState(false))}
+                >
+                  Home
+                </Link>
               </li>
               <li>
-                <Link to={"/about"} onClick={()=>dispatch(changeNavbarState(false))}>About</Link>
+                <Link
+                  to={"/about"}
+                  onClick={() => dispatch(changeNavbarState(false))}
+                >
+                  About
+                </Link>
               </li>
               <li>
-                <Link to={"/contact"} onClick={()=>dispatch(changeNavbarState(false))}>Contact</Link>
+                <Link
+                  to={"/contact"}
+                  onClick={() => dispatch(changeNavbarState(false))}
+                >
+                  Contact
+                </Link>
               </li>
               <li>
-                <Link to={"/faq"} onClick={()=>dispatch(changeNavbarState(false))}>Faq's</Link>
+                <Link
+                  to={"/faq"}
+                  onClick={() => dispatch(changeNavbarState(false))}
+                >
+                  Faq's
+                </Link>
               </li>
             </ul>
           </div>
@@ -126,13 +148,13 @@ const NavBar = () => {
                 border: "none",
                 borderRadius: "20px",
                 cursor: "pointer",
-                background: "#3fa9f9"
+                background: "#3fa9f9",
               }}
               onClick={() => {
                 handleAuth(handleLogin);
               }}
             >
-              Add Item
+              Login
             </button>
           )}
         </div>

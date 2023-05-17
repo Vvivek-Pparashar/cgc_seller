@@ -6,6 +6,7 @@ import NavBar from "./components/navBar/NavBar";
 import SiderComp from "./components/siderComp/SiderComp";
 import FooterComp from "./components/footerComp/FooterComp";
 import { ScrollRestoration } from "react-router-dom";
+import FloatingItem from "./components/floatingItem/FloatingItem";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Layout className="site-layout" id="main-comp">
           <SiderComp />
           <ContinerComp />
+          <FloatingItem />
         </Layout>
         <FooterComp />
       </Layout>
