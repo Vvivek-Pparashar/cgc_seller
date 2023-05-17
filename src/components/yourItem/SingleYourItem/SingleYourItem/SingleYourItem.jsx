@@ -121,7 +121,7 @@ const SingleYourItem = () => {
                       });
                   }}
                 >
-                  <DeleteFilled />
+                  <img src="../../../../../delete.gif" alt="deleteGif" style={{width:"20px"}}/>
                   Delete Item
                 </div>
 
