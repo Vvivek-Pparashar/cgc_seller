@@ -65,60 +65,65 @@ const NavBar = () => {
             />
           </Link>
 
-          <div className={`menu-sm ${open ? "active" : ""}`}>
-            <Link to={"/"}>
-              <img
-                src="../../../logo2.png"
-                alt="logo"
-                style={{ width: "180px" }}
+          <div
+            className={`sm-menu-cnt ${open ? "active" : ""}`}
+            onClick={() => dispatch(changeNavbarState(false))}
+          >
+            <div className={`menu-sm ${open ? "active" : ""}`}>
+              <Link to={"/"}>
+                <img
+                  src="../../../logo2.png"
+                  alt="logo"
+                  style={{ width: "180px" }}
+                />
+              </Link>
+
+              <CloseOutlined
+                className="sm-menu-icon"
+                onClick={() => dispatch(changeNavbarState(false))}
+                style={{
+                  position: "absolute",
+                  top: "15px",
+                  right: "15px",
+                  fontSize: "25px",
+                }}
               />
-            </Link>
 
-            <CloseOutlined
-              className="sm-menu-icon"
-              onClick={() => dispatch(changeNavbarState(false))}
-              style={{
-                position: "absolute",
-                top: "15px",
-                right: "15px",
-                fontSize: "25px",
-              }}
-            />
-
-            <ul className="menu-sm-items">
-              <li>
-                <Link
-                  to={"/"}
-                  onClick={() => dispatch(changeNavbarState(false))}
-                >
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to={"/about"}
-                  onClick={() => dispatch(changeNavbarState(false))}
-                >
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to={"/contact"}
-                  onClick={() => dispatch(changeNavbarState(false))}
-                >
-                  Contact
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to={"/faq"}
-                  onClick={() => dispatch(changeNavbarState(false))}
-                >
-                  Faq's
-                </Link>
-              </li>
-            </ul>
+              <ul className="menu-sm-items">
+                <li>
+                  <Link
+                    to={"/"}
+                    onClick={() => dispatch(changeNavbarState(false))}
+                  >
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to={"/about"}
+                    onClick={() => dispatch(changeNavbarState(false))}
+                  >
+                    About
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to={"/contact"}
+                    onClick={() => dispatch(changeNavbarState(false))}
+                  >
+                    Contact
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to={"/faq"}
+                    onClick={() => dispatch(changeNavbarState(false))}
+                  >
+                    Faq's
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
 
           <ul className="menu-items">
@@ -144,7 +149,6 @@ const NavBar = () => {
               style={{
                 padding: "7px 20px",
                 color: "white",
-                background: "black",
                 border: "none",
                 borderRadius: "20px",
                 cursor: "pointer",
@@ -154,7 +158,7 @@ const NavBar = () => {
                 handleAuth(handleLogin);
               }}
             >
-              Login
+              Log In
             </button>
           )}
         </div>
