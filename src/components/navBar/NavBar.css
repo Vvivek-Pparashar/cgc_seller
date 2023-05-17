@@ -1,5 +1,4 @@
-.navbar input[type="checkbox"]
-.navbar .hamburger-lines {
+.navbar input[type="checkbox"] .navbar .hamburger-lines {
   display: none;
 }
 
@@ -92,6 +91,11 @@
     font-size: 25px;
   }
 
+  .sm-menu-icon:focus {
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent;
+  }
+
   .sm-menu-cnt {
     width: 100%;
     height: 100vh;
@@ -102,7 +106,7 @@
     transition: 0.5s ease-in-out;
   }
 
-  .sm-menu-cnt.active{
+  .sm-menu-cnt.active {
     left: 0;
   }
 

@@ -3,4 +3,10 @@
   padding: 0;
   box-sizing: border-box;
   /* overflow-x: hidden; */
+  -webkit-tap-highlight-color: transparent;
+  caret-color: transparent;
+}
+
+input{
+  caret-color: auto;
 }
