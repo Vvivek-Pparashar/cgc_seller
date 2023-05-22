@@ -6,7 +6,7 @@ import "./ItemContainer.css";
 import { Link, ScrollRestoration } from "react-router-dom";
 import axios from "axios";
 import { useParams } from "react-router";
-import { ArrowLeftOutlined, PhoneOutlined } from "@ant-design/icons";
+import { ArrowLeftOutlined } from "@ant-design/icons";
 import SingleItemSkeleton from "../skeleton/SingleItemSkeleton";
 import ReactWhatsapp from "react-whatsapp";
 

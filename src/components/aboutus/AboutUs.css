@@ -1,0 +1,24 @@
+.ab-m {
+  padding: 40px 10vw;
+}
+
+.ab-m-h3 {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.ab-m-h3::after {
+  content: " ";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 135px;
+  height: 5px;
+  background-color: black;
+}
+
+@media (max-width: 750px) {
+  .ab-m {
+    padding: 20px 5vw;
+  }
+}

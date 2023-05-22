@@ -5,6 +5,7 @@ import { createBrowserRouter } from "react-router-dom";
 import AddItem from "./components/addItem/AddItem";
 import YourItem from "./components/yourItem/YourItem";
 import SingleYourItem from "./components/yourItem/SingleYourItem/SingleYourItem/SingleYourItem";
+import AboutUs from "./components/aboutus/AboutUs";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
     path: "/yourItem/:id",
     element: <SingleYourItem />,
   },
+  {
+    path:"/aboutUs",
+    element:<AboutUs/>
+  }
 ]);
 
 export default router;

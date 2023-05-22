@@ -75,7 +75,7 @@ const ContinerComp = ({ change }) => {
                         {e.title}
                       </h3>
                       <div className="card-con-btm">
-                        <p style={{ fontSize: "15px" }}>₹ {e.price}</p>
+                        <p style={{ fontSize: "15px", fontWeight:"600" }}>₹ {e.price}</p>
                         <p style={{ fontSize: "15px" }}>{e.category}</p>
                       </div>
                     </div>

@@ -10,7 +10,6 @@ import GoogleButton from "react-google-button";
 import { handleAuth } from "../utils/auth";
 import { setLogin } from "../store/slice/loginSlice";
 import CardCompSkeleton from "../skeleton/CardCompSkeleton";
-import { DeleteFilled } from "@ant-design/icons";
 import "./YourItem.css";
 
 const YourItem = () => {
@@ -41,18 +40,15 @@ const YourItem = () => {
         <NavBar />
         <Layout className="site-layout" id="main-comp">
           {loading ? (
-            <CardCompSkeleton />
+            <Content className="site-layout-background">
+              <Row gutter={[18, 2]} style={{ padding: "0 10px" }}>
+                <CardCompSkeleton />
+              </Row>
+            </Content>
           ) : login ? (
             <Content className="site-layout-background">
               <h1 className="your-item-h1">Your Item's</h1>
-              <Row
-                gutter={{
-                  xs: 8,
-                  sm: 16,
-                  md: 24,
-                  lg: 32,
-                }}
-              >
+              <Row gutter={[18, 2]}>
                 {data.filter(
                   (item) => item.email === localStorage.getItem("email")
                 ).length ? (

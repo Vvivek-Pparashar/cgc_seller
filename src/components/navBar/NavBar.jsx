@@ -100,7 +100,7 @@ const NavBar = () => {
                 </li>
                 <li>
                   <Link
-                    to={"/about"}
+                    to={"/aboutUs"}
                     onClick={() => dispatch(changeNavbarState(false))}
                   >
                     About
@@ -108,7 +108,7 @@ const NavBar = () => {
                 </li>
                 <li>
                   <Link
-                    to={"/contact"}
+                    to={"/contactUs"}
                     onClick={() => dispatch(changeNavbarState(false))}
                   >
                     Contact
@@ -116,7 +116,7 @@ const NavBar = () => {
                 </li>
                 <li>
                   <Link
-                    to={"/faq"}
+                    to={"/faq's"}
                     onClick={() => dispatch(changeNavbarState(false))}
                   >
                     Faq's
@@ -131,13 +131,13 @@ const NavBar = () => {
               <Link to={"/"}>Home</Link>
             </li>
             <li>
-              <a href="/">About</a>
+              <Link to={"/aboutUs"}>About Us</Link>
             </li>
             <li>
-              <a href="/">Contact Us</a>
+              <Link to={"/contactUs"}>Contact Us</Link>
             </li>
             <li>
-              <a href="/">Faq's</a>
+              <Link to={"/faq's"}>Faq's</Link>
             </li>
           </ul>
 
