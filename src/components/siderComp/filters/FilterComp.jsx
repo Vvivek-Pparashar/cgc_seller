@@ -15,7 +15,7 @@ const FilterComp = () => {
         <Radio value={"All"}>All</Radio>
         <Radio value={"Book"}>Books</Radio>
         <Radio value={"Lab Coat"}>Lab Coat</Radio>
-        <Radio value={"Laptops/Phones"}>Laptops/Phones</Radio>
+        <Radio value={"Laptops/Phones"}>Electronics</Radio>
         <Radio value={"Clothes"}>Clothes</Radio>
         <Radio value={"HouseHold"}>HouseHold</Radio>
         <Radio value={"Other"}>Others</Radio>
