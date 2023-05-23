@@ -1,5 +1,6 @@
 import React from "react";
-import './FooterComp.css'
+import "./FooterComp.css";
+import { Link } from "react-router-dom";
 
 const FooterComp = () => {
   return (
@@ -12,17 +13,17 @@ const FooterComp = () => {
           </h3>
 
           <p class="footer-links">
-            <a href="/" class="link-1">
+            <Link to={"/"} class="link-1">
               Home
-            </a>
+            </Link>
 
-            <a href="/">Write</a>
+            <Link to={'/additem'}>Add-Item</Link>
 
-            <a href="/">About</a>
+            <Link to={"/aboutus"}>About us</Link>
 
-            <a href="/">Faq</a>
+            <Link to={"/faq's"}>FAQ's</Link>
 
-            <a href="/">Contact</a>
+            <Link to={"/contact"}>Contact</Link>
           </p>
 
           <p class="footer-company-name">CGC Seller © 2022</p>
@@ -39,23 +40,26 @@ const FooterComp = () => {
 
           <div>
             <i class="fa fa-phone"></i>
-            <p>+91 9350320310</p>
+            <p><a href="tel:9350320310" style={{color:"white"}}>+91 9350320310</a></p>
           </div>
 
           <div>
             <i class="fa fa-envelope"></i>
             <p>
-              <a href="mailto:support@company.com">vivekparashartkd@gmail.com</a>
+              <a href="mailto: cgcseller@gmail.com">cgcseller@gmail.com</a>
             </p>
           </div>
-          </div>
+        </div>
         {/* </div> */}
 
         <div class="footer-right">
           <p class="footer-company-about">
             <span>About the company</span>
-            Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce
-            euismod convallis velit, eu auctor lacus vehicula sit amet.
+            Connect, trade, and save with CgcSeller, the online marketplace for
+            college students. Buy, sell, and build a sustainable campus
+            community by reusing items like textbooks, furniture, and
+            electronics. Join us to revolutionize student trading and contribute
+            to a more affordable and eco-friendly college experience.
           </p>
 
           <div class="footer-icons">

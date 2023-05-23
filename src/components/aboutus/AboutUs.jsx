@@ -4,6 +4,7 @@ import FooterComp from "../footerComp/FooterComp";
 import { Layout } from "antd";
 import NavBar from "../navBar/NavBar";
 import "./AboutUs.css";
+import Contact from "./contact/Contact";
 
 const AboutUs = () => {
   return (
@@ -12,10 +13,9 @@ const AboutUs = () => {
         <NavBar />
         <Layout className="site-layout" id="main-comp">
           <div className="ab-m">
-            <h3 className="ab-m-h3" style={{ fontSize: "30px" }}>
-              About us :
-            </h3>
-            <p style={{ fontSize: "17px", lineHeight:"1.7rem" }}>
+            <h3 className="ab-m-h3">About us :</h3>
+
+            <p style={{ fontSize: "17px", lineHeight: "1.7rem" }}>
               Welcome to our website, the online platform that connects college
               students across campuses and promotes the reuse of items among
               them. Our mission is to simplify the process of buying and selling
@@ -51,6 +51,8 @@ const AboutUs = () => {
               use and that it contributes to making your college experience more
               affordable and sustainable.
             </p>
+
+            <Contact />
           </div>
         </Layout>
         <FooterComp />
