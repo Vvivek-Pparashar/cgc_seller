@@ -7,7 +7,7 @@ const QA = ({ question, ans, open, index, changeValue }) => {
     <>
       <div
         className="m-qa"
-        style={{ borderBottom: `${index === 6 ? "none" : ""}` }}
+        style={{ borderBottom: `${index === 5 ? "none" : ""}` }}
         onClick={() => changeValue(index)}
       >
         <div className="m-qa-question">
