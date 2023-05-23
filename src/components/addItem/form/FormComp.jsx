@@ -100,7 +100,7 @@ const FormComp = ({ submit }) => {
             }}
           >
             <Select.Option value="Book">Book</Select.Option>
-            <Select.Option value="Stationary">Stationary(i.e drafter, calculator, etc..)</Select.Option>
+            <Select.Option value="Stationary">Stationary (i.e drafter, calculator, etc..)</Select.Option>
             <Select.Option value="Lab Coat">Lab Coat</Select.Option>
             <Select.Option value="Electronics">Electronics</Select.Option>
             <Select.Option value="Clothes">Clothes</Select.Option>
