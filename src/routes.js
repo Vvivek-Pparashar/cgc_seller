@@ -6,6 +6,7 @@ import AddItem from "./components/addItem/AddItem";
 import YourItem from "./components/yourItem/YourItem";
 import SingleYourItem from "./components/yourItem/SingleYourItem/SingleYourItem/SingleYourItem";
 import AboutUs from "./components/aboutus/AboutUs";
+import Faqs from "./components/faq's/Faqs";
 
 const router = createBrowserRouter([
   {
@@ -34,9 +35,14 @@ const router = createBrowserRouter([
     element: <SingleYourItem />,
   },
   {
-    path:"/aboutUs",
-    element:<AboutUs/>
-  }
+    path: "/aboutUs",
+    element: <AboutUs />,
+  },
+
+  {
+    path: "/faq's",
+    element: <Faqs />,
+  },
 ]);
 
 export default router;
