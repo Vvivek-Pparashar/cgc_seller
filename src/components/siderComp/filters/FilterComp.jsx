@@ -14,8 +14,9 @@ const FilterComp = () => {
       <Space direction="vertical">
         <Radio value={"All"}>All</Radio>
         <Radio value={"Book"}>Books</Radio>
+        <Radio value="Stationary">Stationary</Radio>
         <Radio value={"Lab Coat"}>Lab Coat</Radio>
-        <Radio value={"Laptops/Phones"}>Electronics</Radio>
+        <Radio value={"Electronics"}>Electronics</Radio>
         <Radio value={"Clothes"}>Clothes</Radio>
         <Radio value={"HouseHold"}>HouseHold</Radio>
         <Radio value={"Other"}>Others</Radio>
