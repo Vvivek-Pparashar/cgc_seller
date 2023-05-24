@@ -22,8 +22,6 @@ const FooterComp = () => {
             <Link to={"/aboutus"}>About us</Link>
 
             <Link to={"/faq's"}>FAQ's</Link>
-
-            <Link to={"/aboutUs"}>Contact</Link>
           </p>
 
           <p class="footer-company-name">CGC Seller © 2022</p>
