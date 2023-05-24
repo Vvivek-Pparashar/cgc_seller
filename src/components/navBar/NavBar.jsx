@@ -108,7 +108,7 @@ const NavBar = () => {
                 </li>
                 <li>
                   <Link
-                    to={"/contactUs"}
+                    to={"/aboutUs"}
                     onClick={() => dispatch(changeNavbarState(false))}
                   >
                     Contact
@@ -134,7 +134,7 @@ const NavBar = () => {
               <Link to={"/aboutUs"}>About Us</Link>
             </li>
             <li>
-              <Link to={"/contactUs"}>Contact Us</Link>
+              <Link to={"/aboutUs"}>Contact Us</Link>
             </li>
             <li>
               <Link to={"/faq's"}>Faq's</Link>

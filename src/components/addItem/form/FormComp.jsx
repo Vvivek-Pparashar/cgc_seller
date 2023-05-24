@@ -60,6 +60,7 @@ const FormComp = ({ submit }) => {
           ]}
         >
           <Input
+            minLength={3}
             onChange={(e) => {
               dispatch(cngTitle(e.target.value));
             }}
@@ -100,7 +101,9 @@ const FormComp = ({ submit }) => {
             }}
           >
             <Select.Option value="Book">Book</Select.Option>
-            <Select.Option value="Stationary">Stationary (i.e drafter, calculator, etc..)</Select.Option>
+            <Select.Option value="Stationary">
+              Stationary (i.e drafter, calculator, etc..)
+            </Select.Option>
             <Select.Option value="Lab Coat">Lab Coat</Select.Option>
             <Select.Option value="Electronics">Electronics</Select.Option>
             <Select.Option value="Clothes">Clothes</Select.Option>
@@ -121,6 +124,7 @@ const FormComp = ({ submit }) => {
           ]}
         >
           <Input
+            minLength={3}
             onChange={(e) => {
               dispatch(cngName(e.target.value));
             }}
@@ -138,6 +142,7 @@ const FormComp = ({ submit }) => {
             addonBefore={"+91"}
             style={{ width: "100%" }}
             maxLength={10}
+            minLength={10}
             onChange={(e) => {
               dispatch(cngPhoneNo(e.target.value));
             }}
