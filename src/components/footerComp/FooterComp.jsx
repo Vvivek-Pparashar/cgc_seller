@@ -17,7 +17,7 @@ const FooterComp = () => {
               Home
             </Link>
 
-            <Link to={'/additem'}>Add-Item</Link>
+            <Link to={"/additem"}>Add-Item</Link>
 
             <Link to={"/aboutus"}>About us</Link>
 
@@ -38,7 +38,11 @@ const FooterComp = () => {
 
           <div>
             <i class="fa fa-phone"></i>
-            <p><a href="tel:9350320310" style={{color:"white"}}>+91 9350320310</a></p>
+            <p>
+              <a href="tel:9350320310" style={{ color: "white" }}>
+                +91 9350320310
+              </a>
+            </p>
           </div>
 
           <div>
@@ -61,18 +65,18 @@ const FooterComp = () => {
           </p>
 
           <div class="footer-icons">
-            <a href="/">
+            <Link to={"/"}>
               <i class="fa fa-facebook"></i>
-            </a>
-            <a href="/">
+            </Link>
+            <Link to={"/"}>
               <i class="fa fa-twitter"></i>
-            </a>
-            <a href="/">
+            </Link>
+            <Link to={"/"}>
               <i class="fa fa-linkedin"></i>
-            </a>
-            <a href="/">
+            </Link>
+            <Link to={"/"}>
               <i class="fa fa-github"></i>
-            </a>
+            </Link>
           </div>
         </div>
       </footer>
